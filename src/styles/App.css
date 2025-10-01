@@ -1,0 +1,11 @@
+#root {
+    padding: 20px;
+    display: grid;
+    justify-items: center;
+    gap: 20px;
+}
+
+
+h1 {
+    font-size: 3rem;
+}
