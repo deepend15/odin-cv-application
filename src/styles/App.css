@@ -1,11 +1,32 @@
 #root {
-    padding: 20px;
-    display: grid;
-    justify-items: center;
-    gap: 20px;
+  padding: 20px;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
 }
 
-
 h1 {
-    font-size: 3rem;
+  font-size: 3rem;
+}
+
+form {
+  display: grid;
+  gap: 15px;
+}
+
+fieldset {
+  padding: 20px 20px 25px 20px;
+}
+
+fieldset > legend {
+  font-weight: bold;
+}
+
+fieldset > p:not(:last-child),
+.year-line {
+  margin-bottom: 15px;
+}
+
+form > button {
+  justify-self: center;
 }

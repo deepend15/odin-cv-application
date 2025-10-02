@@ -4,18 +4,17 @@ export default function General() {
       <fieldset>
         <legend>General</legend>
         <p>
-          <label for="name">Name:</label>
+          <label htmlFor="name">Name:</label>
           <input type="text" id="name" name="name" required />
         </p>
         <p>
-          <label for="email">Email address:</label>
+          <label htmlFor="email">Email address:</label>
           <input type="email" id="email" name="email" required />
         </p>
         <p>
-          <label for="phone">Phone number:</label>
+          <label htmlFor="phone">Phone number:</label>
           <input type="tel" id="phone" name="phone" required />
         </p>
-        <button type="button">OK</button>
       </fieldset>
     </section>
   );

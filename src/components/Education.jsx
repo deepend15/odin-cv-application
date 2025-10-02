@@ -1,13 +1,49 @@
+import Years from "./YearsLine";
+
 export default function Education() {
   return (
     <section>
       <fieldset>
         <legend>Education</legend>
         <p>
-          <label for="school">Name of School:</label>
-          <input type="text" id="school" name="school" required />
+          <label htmlFor="school1">Name of School:</label>
+          <input type="text" id="school1" name="school1" required />
         </p>
-        <button type="button">OK</button>
+        <p>
+          <label htmlFor="school1Location">Location:</label>
+          <input
+            type="text"
+            id="school1Location"
+            name="school1Location"
+            required
+          />
+        </p>
+        <div className="year-line">
+          Years Attended:
+          <Years type="school1Start" />
+          through
+          <Years type="school1End" />
+        </div>
+        <p>
+          <label htmlFor="degree">Degree received:</label>
+          <select name="degree" id="degree">
+            <option value="">--Select one--</option>
+            <option value="diploma">Diploma / GED</option>
+            <option value="associate">Associate's</option>
+            <option value="bachelor">Bachelor's</option>
+            <option value="master">Master's / Equivalent</option>
+            <option value="doctorate">Doctorate / Equivalent</option>
+          </select>
+        </p>
+        <p>
+          <label htmlFor="fieldOfStudy">Field of study:</label>
+          <input
+            type="text"
+            id="fieldOfStudy"
+            name="fieldOfStudy"
+            required
+          />
+        </p>
       </fieldset>
     </section>
   );
