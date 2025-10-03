@@ -8,6 +8,7 @@ function App() {
   return (
     <>
       <h1>Resume Builder</h1>
+      <p>*All fields are required*</p>
       <form action="" method="">
         <General />
         <Education />

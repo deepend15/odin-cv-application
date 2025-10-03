@@ -1,3 +1,4 @@
+import "../styles/Experience.css";
 import Years from "./YearsLine";
 
 export default function Experience() {
@@ -19,9 +20,9 @@ export default function Experience() {
           />
         </p>
         <div className="year-line">
-          Years Worked:
+          <span>Years Worked:</span>
           <Years type="company1Start" />
-          through
+          <span>through</span>
           <Years type="company1End" />
         </div>
         <p>
