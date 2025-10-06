@@ -1,4 +1,4 @@
-export default function Years({ type }) {
+export default function MonthAndYear({ type }) {
   const months = [
     "January",
     "February",
@@ -15,7 +15,7 @@ export default function Years({ type }) {
   ];
 
   return (
-    <>
+    <div className="month-and-year">
       <div>
         <label htmlFor={type + "Month"}>Month</label>
         <select name={type + "Month"} id={type + "Month"}>
@@ -28,6 +28,6 @@ export default function Years({ type }) {
         <label htmlFor={type + "Year"}>Year</label>
         <input type="tel" id={type + "Year"} name={type + "Year"} required />
       </div>
-    </>
+    </div>
   );
 }
