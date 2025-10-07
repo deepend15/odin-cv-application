@@ -1,14 +1,15 @@
+import Name from "./Name";
+import Email from "./Email";
+
 export default function General() {
   return (
     <fieldset>
       <legend>General</legend>
       <p>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" required />
+        <Name />
       </p>
       <p>
-        <label htmlFor="email">Email address:</label>
-        <input type="email" id="email" name="email" required />
+        <Email />
       </p>
       <p>
         <label htmlFor="phone">Phone number:</label>
