@@ -1,5 +1,6 @@
 import Name from "./Name";
 import Email from "./Email";
+import Phone from "./Phone";
 
 export default function General() {
   return (
@@ -12,8 +13,7 @@ export default function General() {
         <Email />
       </p>
       <p>
-        <label htmlFor="phone">Phone number:</label>
-        <input type="tel" id="phone" name="phone" required />
+        <Phone />
       </p>
     </fieldset>
   );

@@ -38,6 +38,8 @@ h1 {
 
 #root > p {
   color: red;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 form {
@@ -72,11 +74,15 @@ fieldset > p > label {
   background-color: rgb(255, 217, 217);
 }
 
-fieldset > p > span {
+.error,
+.helper {
   margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.error {
   color: red;
   font-weight: bold;
-  font-size: 1.5rem;
 }
 
 .year-line {
@@ -117,6 +123,11 @@ fieldset > p > span {
 .month-and-year input {
   max-width: 100px;
 }
+
+.responsibilities-line {
+  align-items: flex-start;
+}
+
 
 textarea {
   line-height: 1.5;

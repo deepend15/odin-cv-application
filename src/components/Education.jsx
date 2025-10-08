@@ -1,21 +1,17 @@
+import SchoolName from "./SchoolName";
+import SchoolLocation from "./SchoolLocation";
 import MonthAndYear from "./MonthAndYear";
+import FieldOfStudy from "./FieldOfStudy";
 
 export default function Education() {
   return (
     <fieldset>
       <legend>Education</legend>
       <p>
-        <label htmlFor="school1">Name of School:</label>
-        <input type="text" id="school1" name="school1" required />
+        <SchoolName number="1" />
       </p>
       <p>
-        <label htmlFor="school1Location">Location:</label>
-        <input
-          type="text"
-          id="school1Location"
-          name="school1Location"
-          required
-        />
+        <SchoolLocation number="1"/>
       </p>
       <div className="year-line">
         <span>Years Attended:</span>
@@ -37,8 +33,7 @@ export default function Education() {
         </select>
       </p>
       <p>
-        <label htmlFor="fieldOfStudy">Field of study:</label>
-        <input type="text" id="fieldOfStudy" name="fieldOfStudy" required />
+        <FieldOfStudy number="1" />
       </p>
     </fieldset>
   );
