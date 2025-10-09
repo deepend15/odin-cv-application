@@ -57,13 +57,15 @@ fieldset > legend {
 }
 
 fieldset > p:not(:last-child) {
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 }
 
 fieldset > p {
   display: flex;
   gap: 10px;
   align-items: center;
+  position: relative;
+  width: max-content;
 }
 
 fieldset > p > label {
@@ -81,10 +83,12 @@ fieldset > p > label {
 }
 
 .error {
-  margin-left: 10px;
   font-size: 1.5rem;
   color: red;
   font-weight: bold;
+  position: absolute;
+  right: 0;
+  transform: translateX(calc(100% + 10px));
 }
 
 .year-line {
@@ -158,12 +162,29 @@ form > button:active {
   background-color: rgb(204, 204, 204);
 }
 
-@media (width <= 715px) {
+@media (max-width: 660px) {
+  fieldset {
+    padding-bottom: 30px;
+  }
+  
+  .error {
+    font-size: 1.4rem;
+    right: auto;
+    bottom: 0;
+    transform: translate(165px, calc(100% + 5px));
+  }
+
+  .year-line {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 715px) {
   .year-line {
     align-items: flex-start;
   }
 
   textarea {
-    width: 50%;
+    width: 220px;
   }
 }
