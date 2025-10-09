@@ -2,6 +2,7 @@ import CompanyName from "./CompanyName";
 import CompanyLocation from "./CompanyLocation";
 import MonthAndYear from "./MonthAndYear";
 import Position from "./Position";
+import Responsibilities from "./Responsibilities";
 
 export default function Experience() {
   return (
@@ -25,8 +26,7 @@ export default function Experience() {
         <Position number="1" />
       </p>
       <p className="responsibilities-line">
-        <label htmlFor="responsibilities">Main Responsibilities:</label>
-        <textarea name="responsibilities" id="responsibilities" rows="4" cols="35" required></textarea>
+        <Responsibilities number="1" />
       </p>
     </fieldset>
   );

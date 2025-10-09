@@ -74,6 +74,12 @@ fieldset > p > label {
   background-color: rgb(255, 217, 217);
 }
 
+.invalid-select,
+.invalid-select:focus-visible {
+  border-color: transparent;
+  outline: 3px dashed red;
+}
+
 .error {
   margin-left: 10px;
   font-size: 1.5rem;
