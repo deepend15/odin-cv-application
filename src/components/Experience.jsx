@@ -1,6 +1,7 @@
 import CompanyName from "./CompanyName";
 import CompanyLocation from "./CompanyLocation";
-import MonthAndYear from "./MonthAndYear";
+import Month from "./Month";
+import Year from "./Year";
 import Position from "./Position";
 import Responsibilities from "./Responsibilities";
 
@@ -17,9 +18,15 @@ export default function Experience() {
       <div className="year-line">
         <span>Years Worked:</span>
         <div>
-          <MonthAndYear type="company1Start" />
+          <div className="month-and-year">
+            <Month type="company1Start" />
+            <Year type="company1Start" />
+          </div>
           <span>to</span>
-          <MonthAndYear type="company1End" />
+          <div className="month-and-year">
+            <Month type="company1End" />
+            <Year type="company1End" />
+          </div>
         </div>
       </div>
       <p>

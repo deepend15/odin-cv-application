@@ -38,13 +38,13 @@ export default function Degree({ number }) {
         onBlur={handleBlur}
         required
       >
-          <option value="">--Select one--</option>
-          <option value="diploma">Diploma / GED</option>
-          <option value="associate">Associate's</option>
-          <option value="bachelor">Bachelor's</option>
-          <option value="master">Master's / Equivalent</option>
-          <option value="doctorate">Doctorate / Equivalent</option>
-        </select>
+        <option value="">--Select one--</option>
+        <option value="diploma">Diploma / GED</option>
+        <option value="associate">Associate's</option>
+        <option value="bachelor">Bachelor's</option>
+        <option value="master">Master's / Equivalent</option>
+        <option value="doctorate">Doctorate / Equivalent</option>
+      </select>
       {!valid && (
         <span className="error" aria-live="polite">
           Degree required.
