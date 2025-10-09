@@ -4,18 +4,22 @@ export default function Year({ type }) {
   const [value, setValue] = useState("");
   const [status, setStatus] = useState("valid");
   const [valueChanged, setValueChanged] = useState(false);
+  const [labelClass, setLabelClass] = useState("");
 
   function checkValidity(e) {
     const regex = /^\d{4}$/;
 
     if (e.target.validity.valueMissing) {
       setStatus("missing");
+      setLabelClass("year-error");
       e.target.classList.add("invalid");
     } else if (!regex.test(e.target.value)) {
       setStatus("invalid");
+      setLabelClass("year-error");
       e.target.classList.add("invalid");
     } else {
       setStatus("valid");
+      setLabelClass("");
       e.target.classList.remove("invalid");
     }
   }
@@ -34,7 +38,11 @@ export default function Year({ type }) {
 
   return (
       <div>
-        <label htmlFor={type + "Year"}>Year</label>
+        <label htmlFor={type + "Year"} className={labelClass}>
+            Year
+            {status === "invalid" && <span>&nbsp;invalid</span>}
+            {status === "missing" && <span>&nbsp;required</span>}
+        </label>
         <input
           type="tel"
           id={type + "Year"}
@@ -44,16 +52,6 @@ export default function Year({ type }) {
           onBlur={handleBlur}
           required
         />
-        {status === "missing" && (
-          <span className="year-error" aria-live="polite">
-            Required.
-          </span>
-        )}
-        {status === "invalid" && (
-          <span className="year-error" aria-live="polite">
-            Invalid.
-          </span>
-        )}
       </div>
   );
 }

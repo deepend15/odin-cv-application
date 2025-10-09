@@ -122,6 +122,11 @@ fieldset > p > label {
   color: darkblue;
 }
 
+.month-and-year > div > label[class="year-error"] {
+  color: red;
+  font-weight: bold;
+}
+
 .month-and-year input {
   max-width: 100px;
 }
