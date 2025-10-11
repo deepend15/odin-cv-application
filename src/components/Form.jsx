@@ -15,13 +15,38 @@ export default function Form() {
   const [phoneIsValid, setPhoneIsValid] = useState(true);
   const [phoneValueChanged, setPhoneValueChanged] = useState(false);
 
-  function checkNameValidity(e) {
-    if (e.target.validity.valueMissing) {
-      setNameIsValid(false);
-      e.target.classList.add("invalid");
-    } else {
-      setNameIsValid(true);
-      e.target.classList.remove("invalid");
+  function checkValidity(e) {
+    if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
+      let setTargetIsValid;
+      switch (e.target.id) {
+        case "name":
+          setTargetIsValid = setNameIsValid;
+          break;
+        case "phone":
+          setTargetIsValid = setPhoneIsValid;
+          break;
+      }
+
+      if (e.target.validity.valueMissing) {
+        setTargetIsValid(false);
+        e.target.classList.add("invalid");
+      } else {
+        setTargetIsValid(true);
+        e.target.classList.remove("invalid");
+      }
+    }
+
+    if (e.target.id === "email") {
+      if (e.target.validity.valueMissing) {
+        setEmailStatus("missing");
+        e.target.classList.add("invalid");
+      } else if (e.target.validity.typeMismatch) {
+        setEmailStatus("invalid");
+        e.target.classList.add("invalid");
+      } else {
+        setEmailStatus("valid");
+        e.target.classList.remove("invalid");
+      }
     }
   }
 
@@ -29,64 +54,37 @@ export default function Form() {
     setNameValue(e.target.value);
     setNameValueChanged(true);
     if (e.target.classList.contains("invalid")) {
-      checkNameValidity(e);
+      checkValidity(e);
     }
   }
 
   function handleNameBlur(e) {
-    if (nameValueChanged) checkNameValidity(e);
-  }
-
-  function checkEmailValidity(e) {
-    if (e.target.validity.valueMissing) {
-      setEmailStatus("missing");
-      e.target.classList.add("invalid");
-    } else if (e.target.validity.typeMismatch) {
-      setEmailStatus("invalid");
-      e.target.classList.add("invalid");
-    } else {
-      setEmailStatus("valid");
-      e.target.classList.remove("invalid");
-    }
+    if (nameValueChanged) checkValidity(e);
   }
 
   function handleEmailChange(e) {
     setEmailValue(e.target.value);
     setEmailValueChanged(true);
     if (e.target.classList.contains("invalid")) {
-      checkEmailValidity(e);
+      checkValidity(e);
     }
   }
 
   function handleEmailBlur(e) {
-    if (emailValueChanged) checkEmailValidity(e);
-  }
-
-  function checkPhoneValidity(e) {
-    if (e.target.validity.valueMissing) {
-      setPhoneIsValid(false);
-      e.target.classList.add("invalid");
-    } else {
-      setPhoneIsValid(true);
-      e.target.classList.remove("invalid");
-    }
+    if (emailValueChanged) checkValidity(e);
   }
 
   function handlePhoneChange(e) {
     setPhoneValue(e.target.value);
     setPhoneValueChanged(true);
     if (e.target.classList.contains("invalid")) {
-      checkPhoneValidity(e);
+      checkValidity(e);
     }
   }
 
   function handlePhoneBlur(e) {
-    if (phoneValueChanged) checkPhoneValidity(e);
+    if (phoneValueChanged) checkValidity(e);
   }
-
-  //   function checkValidity(e) {
-
-  //   }
 
   return (
     <form action="" method="">
