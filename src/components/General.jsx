@@ -5,15 +5,13 @@ import Email from "./Email";
 export default function General({
   nameValue,
   nameIsValid,
-  handleNameChange,
   handleNameBlur,
   emailValue,
   emailStatus,
-  handleEmailChange,
   handleEmailBlur,
   phoneValue,
   phoneIsValid,
-  handlePhoneChange,
+  handleChange,
   handlePhoneBlur,
 }) {
   return (
@@ -23,7 +21,7 @@ export default function General({
         <Name
           value={nameValue}
           isValid={nameIsValid}
-          handleChange={handleNameChange}
+          handleChange={handleChange}
           handleBlur={handleNameBlur}
         />
       </p>
@@ -31,7 +29,7 @@ export default function General({
         <Email
           value={emailValue}
           status={emailStatus}
-          handleChange={handleEmailChange}
+          handleChange={handleChange}
           handleBlur={handleEmailBlur}
         />
       </p>
@@ -39,7 +37,7 @@ export default function General({
         <Phone
           value={phoneValue}
           isValid={phoneIsValid}
-          handleChange={handlePhoneChange}
+          handleChange={handleChange}
           handleBlur={handlePhoneBlur}
         />
       </p>

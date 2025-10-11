@@ -50,9 +50,27 @@ export default function Form() {
     }
   }
 
-  function handleNameChange(e) {
-    setNameValue(e.target.value);
-    setNameValueChanged(true);
+  function handleChange(e) {
+    let setTargetValue;
+    let setTargetValueChanged;
+
+    switch (e.target.id) {
+      case "name":
+        setTargetValue = setNameValue;
+        setTargetValueChanged = setNameValueChanged;
+        break;
+      case "email":
+        setTargetValue = setEmailValue;
+        setTargetValueChanged = setEmailValueChanged;
+        break;
+      case "phone":
+        setTargetValue = setPhoneValue;
+        setTargetValueChanged = setPhoneValueChanged;
+        break;
+    }
+
+    setTargetValue(e.target.value);
+    setTargetValueChanged(true);
     if (e.target.classList.contains("invalid")) {
       checkValidity(e);
     }
@@ -62,24 +80,8 @@ export default function Form() {
     if (nameValueChanged) checkValidity(e);
   }
 
-  function handleEmailChange(e) {
-    setEmailValue(e.target.value);
-    setEmailValueChanged(true);
-    if (e.target.classList.contains("invalid")) {
-      checkValidity(e);
-    }
-  }
-
   function handleEmailBlur(e) {
     if (emailValueChanged) checkValidity(e);
-  }
-
-  function handlePhoneChange(e) {
-    setPhoneValue(e.target.value);
-    setPhoneValueChanged(true);
-    if (e.target.classList.contains("invalid")) {
-      checkValidity(e);
-    }
   }
 
   function handlePhoneBlur(e) {
@@ -91,15 +93,13 @@ export default function Form() {
       <General
         nameValue={nameValue}
         nameIsValid={nameIsValid}
-        handleNameChange={handleNameChange}
         handleNameBlur={handleNameBlur}
         emailValue={emailValue}
         emailStatus={emailStatus}
-        handleEmailChange={handleEmailChange}
         handleEmailBlur={handleEmailBlur}
         phoneValue={phoneValue}
         phoneIsValid={phoneIsValid}
-        handlePhoneChange={handlePhoneChange}
+        handleChange={handleChange}
         handlePhoneBlur={handlePhoneBlur}
       />
       <Education />
