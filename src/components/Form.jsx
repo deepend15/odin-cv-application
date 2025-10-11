@@ -19,11 +19,20 @@ export default function Form() {
   const [schoolNameValueChanged, setSchoolNameValueChanged] = useState(false);
   const [schoolLocationValue, setSchoolLocationValue] = useState("");
   const [schoolLocationIsValid, setSchoolLocationIsValid] = useState(true);
-  const [schoolLocationValueChanged, setSchoolLocationValueChanged] = useState(false);
+  const [schoolLocationValueChanged, setSchoolLocationValueChanged] =
+    useState(false);
+  const [schoolFieldOfStudyValue, setSchoolFieldOfStudyValue] = useState("");
+  const [schoolFieldOfStudyIsValid, setSchoolFieldOfStudyIsValid] =
+    useState(true);
+  const [schoolFieldOfStudyValueChanged, setSchoolFieldOfStudyValueChanged] =
+    useState(false);
 
   function checkValidity(e) {
     if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
+      // identify correct 'set-isValid' function
+
       let setTargetIsValid;
+
       switch (e.target.id) {
         case "name":
           setTargetIsValid = setNameIsValid;
@@ -37,9 +46,21 @@ export default function Form() {
         setTargetIsValid = setSchoolNameIsValid;
       }
 
-      if (e.target.id.startsWith("school") && e.target.id.endsWith("Location")) {
+      if (
+        e.target.id.startsWith("school") &&
+        e.target.id.endsWith("Location")
+      ) {
         setTargetIsValid = setSchoolLocationIsValid;
       }
+
+      if (
+        e.target.id.startsWith("school") &&
+        e.target.id.endsWith("FieldOfStudy")
+      ) {
+        setTargetIsValid = setSchoolFieldOfStudyIsValid;
+      }
+
+      // implement validity check
 
       if (e.target.validity.valueMissing) {
         setTargetIsValid(false);
@@ -65,6 +86,8 @@ export default function Form() {
   }
 
   function handleChange(e) {
+    // identify target value
+
     let setTargetValue;
     let setTargetValueChanged;
 
@@ -93,6 +116,16 @@ export default function Form() {
       setTargetValueChanged = setSchoolLocationValueChanged;
     }
 
+    if (
+      e.target.id.startsWith("school") &&
+      e.target.id.endsWith("FieldOfStudy")
+    ) {
+      setTargetValue = setSchoolFieldOfStudyValue;
+      setTargetValueChanged = setSchoolFieldOfStudyValueChanged;
+    }
+
+    // implement handle change logic
+
     setTargetValue(e.target.value);
     setTargetValueChanged(true);
     if (e.target.classList.contains("invalid")) {
@@ -101,6 +134,8 @@ export default function Form() {
   }
 
   function handleBlur(e) {
+    // identify correct 'valueChanged' state
+
     let targetValueChanged;
 
     switch (e.target.id) {
@@ -123,6 +158,12 @@ export default function Form() {
       targetValueChanged = schoolLocationValueChanged;
     }
 
+    if (e.target.id.startsWith("school") && e.target.id.endsWith("FieldOfStudy")) {
+      targetValueChanged = schoolFieldOfStudyValueChanged;
+    }
+
+    // implement handleBlur logic
+
     if (targetValueChanged) checkValidity(e);
   }
 
@@ -143,6 +184,8 @@ export default function Form() {
         schoolNameIsValid={schoolNameIsValid}
         schoolLocationValue={schoolLocationValue}
         schoolLocationIsValid={schoolLocationIsValid}
+        schoolFieldOfStudyValue={schoolFieldOfStudyValue}
+        schoolFieldOfStudyIsValid={schoolFieldOfStudyIsValid}
         handleChange={handleChange}
         handleBlur={handleBlur}
       />

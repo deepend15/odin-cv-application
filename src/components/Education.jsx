@@ -10,6 +10,8 @@ export default function Education({
   schoolNameIsValid,
   schoolLocationValue,
   schoolLocationIsValid,
+  schoolFieldOfStudyValue,
+  schoolFieldOfStudyIsValid,
   handleChange,
   handleBlur,
 }) {
@@ -52,7 +54,13 @@ export default function Education({
         <Degree number="1" />
       </p>
       <p>
-        <FieldOfStudy number="1" />
+        <FieldOfStudy
+          number="1"
+          value={schoolFieldOfStudyValue}
+          isValid={schoolFieldOfStudyIsValid}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
       </p>
     </fieldset>
   );
