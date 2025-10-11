@@ -5,12 +5,23 @@ import Year from "./Year";
 import Degree from "./Degree";
 import FieldOfStudy from "./FieldOfStudy";
 
-export default function Education() {
+export default function Education({
+  schoolNameValue,
+  schoolNameIsValid,
+  handleChange,
+  handleBlur,
+}) {
   return (
     <fieldset>
       <legend>Education</legend>
       <p>
-        <SchoolName number="1" />
+        <SchoolName
+          number="1"
+          value={schoolNameValue}
+          isValid={schoolNameIsValid}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
       </p>
       <p>
         <SchoolLocation number="1" />

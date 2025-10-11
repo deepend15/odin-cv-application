@@ -14,6 +14,9 @@ export default function Form() {
   const [phoneValue, setPhoneValue] = useState("");
   const [phoneIsValid, setPhoneIsValid] = useState(true);
   const [phoneValueChanged, setPhoneValueChanged] = useState(false);
+  const [schoolNameValue, setSchoolNameValue] = useState("");
+  const [schoolNameIsValid, setSchoolNameIsValid] = useState(true);
+  const [schoolNameValueChanged, setSchoolNameValueChanged] = useState(false);
 
   function checkValidity(e) {
     if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
@@ -25,6 +28,10 @@ export default function Form() {
         case "phone":
           setTargetIsValid = setPhoneIsValid;
           break;
+      }
+
+      if (e.target.id.startsWith("school") && e.target.id.endsWith("Name")) {
+        setTargetIsValid = setSchoolNameIsValid;
       }
 
       if (e.target.validity.valueMissing) {
@@ -69,6 +76,11 @@ export default function Form() {
         break;
     }
 
+    if (e.target.id.startsWith("school") && e.target.id.endsWith("Name")) {
+      setTargetValue = setSchoolNameValue;
+      setTargetValueChanged = setSchoolNameValueChanged;
+    }
+
     setTargetValue(e.target.value);
     setTargetValueChanged(true);
     if (e.target.classList.contains("invalid")) {
@@ -91,6 +103,10 @@ export default function Form() {
         break;
     }
 
+    if (e.target.id.startsWith("school") && e.target.id.endsWith("Name")) {
+      targetValueChanged = schoolNameValueChanged;
+    }
+
     if (targetValueChanged) checkValidity(e);
   }
 
@@ -106,7 +122,12 @@ export default function Form() {
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
-      <Education />
+      <Education
+        schoolNameValue={schoolNameValue}
+        schoolNameIsValid={schoolNameIsValid}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+      />
       <Experience />
       <button>Submit</button>
     </form>
