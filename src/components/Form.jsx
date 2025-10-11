@@ -76,16 +76,22 @@ export default function Form() {
     }
   }
 
-  function handleNameBlur(e) {
-    if (nameValueChanged) checkValidity(e);
-  }
+  function handleBlur(e) {
+    let targetValueChanged;
 
-  function handleEmailBlur(e) {
-    if (emailValueChanged) checkValidity(e);
-  }
+    switch (e.target.id) {
+      case "name":
+        targetValueChanged = nameValueChanged;
+        break;
+      case "email":
+        targetValueChanged = emailValueChanged;
+        break;
+      case "phone":
+        targetValueChanged = phoneValueChanged;
+        break;
+    }
 
-  function handlePhoneBlur(e) {
-    if (phoneValueChanged) checkValidity(e);
+    if (targetValueChanged) checkValidity(e);
   }
 
   return (
@@ -93,14 +99,12 @@ export default function Form() {
       <General
         nameValue={nameValue}
         nameIsValid={nameIsValid}
-        handleNameBlur={handleNameBlur}
         emailValue={emailValue}
         emailStatus={emailStatus}
-        handleEmailBlur={handleEmailBlur}
         phoneValue={phoneValue}
         phoneIsValid={phoneIsValid}
         handleChange={handleChange}
-        handlePhoneBlur={handlePhoneBlur}
+        handleBlur={handleBlur}
       />
       <Education />
       <Experience />

@@ -5,14 +5,12 @@ import Email from "./Email";
 export default function General({
   nameValue,
   nameIsValid,
-  handleNameBlur,
   emailValue,
   emailStatus,
-  handleEmailBlur,
   phoneValue,
   phoneIsValid,
   handleChange,
-  handlePhoneBlur,
+  handleBlur,
 }) {
   return (
     <fieldset>
@@ -22,7 +20,7 @@ export default function General({
           value={nameValue}
           isValid={nameIsValid}
           handleChange={handleChange}
-          handleBlur={handleNameBlur}
+          handleBlur={handleBlur}
         />
       </p>
       <p>
@@ -30,7 +28,7 @@ export default function General({
           value={emailValue}
           status={emailStatus}
           handleChange={handleChange}
-          handleBlur={handleEmailBlur}
+          handleBlur={handleBlur}
         />
       </p>
       <p>
@@ -38,7 +36,7 @@ export default function General({
           value={phoneValue}
           isValid={phoneIsValid}
           handleChange={handleChange}
-          handleBlur={handlePhoneBlur}
+          handleBlur={handleBlur}
         />
       </p>
     </fieldset>
