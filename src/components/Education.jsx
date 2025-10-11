@@ -8,6 +8,8 @@ import FieldOfStudy from "./FieldOfStudy";
 export default function Education({
   schoolNameValue,
   schoolNameIsValid,
+  schoolLocationValue,
+  schoolLocationIsValid,
   handleChange,
   handleBlur,
 }) {
@@ -24,7 +26,13 @@ export default function Education({
         />
       </p>
       <p>
-        <SchoolLocation number="1" />
+        <SchoolLocation
+          number="1"
+          value={schoolLocationValue}
+          isValid={schoolLocationIsValid}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
       </p>
       <div className="year-line">
         <span>Years Attended:</span>

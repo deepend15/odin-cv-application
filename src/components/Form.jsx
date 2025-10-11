@@ -17,6 +17,9 @@ export default function Form() {
   const [schoolNameValue, setSchoolNameValue] = useState("");
   const [schoolNameIsValid, setSchoolNameIsValid] = useState(true);
   const [schoolNameValueChanged, setSchoolNameValueChanged] = useState(false);
+  const [schoolLocationValue, setSchoolLocationValue] = useState("");
+  const [schoolLocationIsValid, setSchoolLocationIsValid] = useState(true);
+  const [schoolLocationValueChanged, setSchoolLocationValueChanged] = useState(false);
 
   function checkValidity(e) {
     if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
@@ -32,6 +35,10 @@ export default function Form() {
 
       if (e.target.id.startsWith("school") && e.target.id.endsWith("Name")) {
         setTargetIsValid = setSchoolNameIsValid;
+      }
+
+      if (e.target.id.startsWith("school") && e.target.id.endsWith("Location")) {
+        setTargetIsValid = setSchoolLocationIsValid;
       }
 
       if (e.target.validity.valueMissing) {
@@ -81,6 +88,11 @@ export default function Form() {
       setTargetValueChanged = setSchoolNameValueChanged;
     }
 
+    if (e.target.id.startsWith("school") && e.target.id.endsWith("Location")) {
+      setTargetValue = setSchoolLocationValue;
+      setTargetValueChanged = setSchoolLocationValueChanged;
+    }
+
     setTargetValue(e.target.value);
     setTargetValueChanged(true);
     if (e.target.classList.contains("invalid")) {
@@ -107,6 +119,10 @@ export default function Form() {
       targetValueChanged = schoolNameValueChanged;
     }
 
+    if (e.target.id.startsWith("school") && e.target.id.endsWith("Location")) {
+      targetValueChanged = schoolLocationValueChanged;
+    }
+
     if (targetValueChanged) checkValidity(e);
   }
 
@@ -125,6 +141,8 @@ export default function Form() {
       <Education
         schoolNameValue={schoolNameValue}
         schoolNameIsValid={schoolNameIsValid}
+        schoolLocationValue={schoolLocationValue}
+        schoolLocationIsValid={schoolLocationIsValid}
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
