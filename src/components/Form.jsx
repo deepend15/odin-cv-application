@@ -93,12 +93,7 @@ export default function Form() {
   return (
     <form action="" method="">
       <General
-        nameValue={formFields.Name.value}
-        nameIsValid={formFields.Name.isValid}
-        phoneValue={formFields.Phone.value}
-        phoneIsValid={formFields.Phone.isValid}
-        emailValue={formFields.Email.value}
-        emailStatus={formFields.Email.status}
+        formFields={formFields}
         handleChange={handleChange}
         handleBlur={handleBlur}
       />

@@ -2,39 +2,30 @@ import Name from "./Name";
 import Email from "./Email";
 import Phone from "./Phone";
 
-export default function General({
-  nameValue,
-  nameIsValid,
-  emailValue,
-  emailStatus,
-  phoneValue,
-  phoneIsValid,
-  handleChange,
-  handleBlur,
-}) {
+export default function General({ formFields, handleChange, handleBlur }) {
   return (
     <fieldset>
       <legend>General</legend>
       <p>
         <Name
-          value={nameValue}
-          isValid={nameIsValid}
+          value={formFields.Name.value}
+          isValid={formFields.Name.isValid}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
       </p>
       <p>
         <Email
-          value={emailValue}
-          status={emailStatus}
+          value={formFields.Email.value}
+          status={formFields.Email.status}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
       </p>
       <p>
         <Phone
-          value={phoneValue}
-          isValid={phoneIsValid}
+          value={formFields.Phone.value}
+          isValid={formFields.Phone.isValid}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
