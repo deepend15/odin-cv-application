@@ -97,7 +97,11 @@ export default function Form() {
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
-      <Education />
+      <Education
+        formFields={formFields}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+      />
       <Experience />
       <button>Submit</button>
     </form>

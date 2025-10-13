@@ -1,38 +1,16 @@
-import { useState } from "react";
-
-export default function Degree({ number }) {
-  const [value, setValue] = useState("");
-  const [valid, setValid] = useState(true);
-  const [valueChanged, setValueChanged] = useState(false);
-
-  function checkValidity(e) {
-    if (e.target.validity.valueMissing) {
-      setValid(false);
-      e.target.classList.add("invalid-select");
-    } else {
-      setValid(true);
-      e.target.classList.remove("invalid-select");
-    }
-  }
-
-  function handleChange(e) {
-    setValue(e.target.value);
-    setValueChanged(true);
-    if (e.target.classList.contains("invalid-select")) {
-      checkValidity(e);
-    }
-  }
-
-  function handleBlur(e) {
-    if (valueChanged) checkValidity(e);
-  }
-
+export default function Degree({
+  number,
+  value,
+  isValid,
+  handleChange,
+  handleBlur,
+}) {
   return (
     <>
       <label htmlFor={"school" + number + "Degree"}>Degree received:</label>
       <select
-        name={"school" + number + "Degree"}
         id={"school" + number + "Degree"}
+        name={"school" + number + "Degree"}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -45,7 +23,7 @@ export default function Degree({ number }) {
         <option value="master">Master's / Equivalent</option>
         <option value="doctorate">Doctorate / Equivalent</option>
       </select>
-      {!valid && (
+      {!isValid && (
         <span className="error" aria-live="polite">
           Degree required.
         </span>
