@@ -55,7 +55,7 @@ export const initialFormFields = {
   School1StartYear: {
     id: "school1StartYear",
     value: "",
-    isValid: true,
+    status: "valid",
     hasChanged: false,
   },
   School1EndMonth: {
@@ -65,7 +65,7 @@ export const initialFormFields = {
   School1EndYear: {
     id: "school1EndYear",
     value: "",
-    isValid: true,
+    status: "valid",
     hasChanged: false,
   },
   School1Degree: {

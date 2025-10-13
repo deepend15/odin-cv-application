@@ -31,13 +31,33 @@ export default function Education({ formFields, handleChange, handleBlur }) {
         <span>Years Attended:</span>
         <div>
           <div className="month-and-year">
-            <Month type="school1Start" />
-            <Year type="school1Start" />
+            <Month
+              type="school1Start"
+              value={formFields.School1StartMonth.value}
+              handleChange={handleChange}
+            />
+            <Year
+              type="school1Start"
+              value={formFields.School1StartYear.value}
+              status={formFields.School1StartYear.status}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
           </div>
           <span>to</span>
           <div className="month-and-year">
-            <Month type="school1End" />
-            <Year type="school1End" />
+            <Month
+              type="school1End"
+              value={formFields.School1EndMonth.value}
+              handleChange={handleChange}
+            />
+            <Year
+              type="school1End"
+              value={formFields.School1EndYear.value}
+              status={formFields.School1EndYear.status}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
           </div>
         </div>
       </div>

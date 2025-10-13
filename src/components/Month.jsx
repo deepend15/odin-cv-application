@@ -1,12 +1,4 @@
-import { useState } from "react";
-
-export default function Month({ type }) {
-  const [value, setValue] = useState("January");
-
-  function handleChange(e) {
-    setValue(e.target.value);
-  }
-
+export default function Month({ type, value, handleChange }) {
   const months = [
     "January",
     "February",
@@ -26,8 +18,8 @@ export default function Month({ type }) {
     <div>
       <label htmlFor={type + "Month"}>Month</label>
       <select
-        name={type + "Month"}
         id={type + "Month"}
+        name={type + "Month"}
         value={value}
         onChange={handleChange}
       >

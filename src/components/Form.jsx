@@ -37,6 +37,16 @@ export default function Form() {
         : "valid";
     }
 
+    if (e.target.id.endsWith("Year")) {
+      const regex = /^\d{4}$/;
+
+      newField.status = e.target.validity.valueMissing
+        ? "missing"
+        : !regex.test(e.target.value)
+        ? "invalid"
+        : "valid";
+    }
+
     // create new 'formFields' with new property / value, and update state
     const newFormFields = {
       ...formFields,
@@ -46,16 +56,19 @@ export default function Form() {
 
     // update element class
 
-    if (
-      e.target.validity.valueMissing ||
-      (e.target.id === "email" && e.target.validity.typeMismatch)
-    ) {
+    if (e.target.validity.valueMissing || newField.status === "invalid") {
       if (e.target.id.endsWith("Degree"))
         e.target.classList.add("invalid-select");
-      else e.target.classList.add("invalid");
+      else {
+        if (e.target.id.endsWith("Year")) {
+          e.target.previousElementSibling.classList.add("year-error");
+        }
+        e.target.classList.add("invalid");
+      }
     } else {
       e.target.classList.remove("invalid");
       e.target.classList.remove("invalid-select");
+      e.target.previousElementSibling.classList.remove("year-error");
     }
   }
 
