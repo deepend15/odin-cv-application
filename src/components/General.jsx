@@ -24,10 +24,20 @@ export default function General({
         />
       </p>
       <p>
-        <Email />
+        <Email
+          value={emailValue}
+          status={emailStatus}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
       </p>
       <p>
-        <Phone />
+        <Phone
+          value={phoneValue}
+          isValid={phoneIsValid}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
       </p>
     </fieldset>
   );
