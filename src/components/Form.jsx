@@ -115,7 +115,11 @@ export default function Form() {
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
-      <Experience />
+      <Experience
+        formFields={formFields}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+      />
       <button>Submit</button>
     </form>
   );

@@ -1,3 +1,5 @@
+import Experience from "./Experience";
+
 export const initialFormFields = {
   General: {
     childIds: ["name", "email", "phone"],
@@ -76,6 +78,66 @@ export const initialFormFields = {
   },
   School1FieldOfStudy: {
     id: "school1FieldOfStudy",
+    value: "",
+    isValid: true,
+    hasChanged: false,
+  },
+  Experience: {
+    childIds: ["company1"],
+  },
+  Company1: {
+    id: "company1",
+    childIds: [
+      "company1Name",
+      "company1Location",
+      "company1StartMonth",
+      "company1StartYear",
+      "company1EndMonth",
+      "company1EndYear",
+      "company1Position",
+      "company1Responsibilities",
+    ],
+  },
+  Company1Name: {
+    id: "company1Name",
+    value: "",
+    isValid: true,
+    hasChanged: false,
+  },
+  Company1Location: {
+    id: "company1Location",
+    value: "",
+    isValid: true,
+    hasChanged: false,
+  },
+  Company1StartMonth: {
+    id: "company1StartMonth",
+    value: "January",
+  },
+  Company1StartYear: {
+    id: "company1StartYear",
+    value: "",
+    status: "valid",
+    hasChanged: false,
+  },
+  Company1EndMonth: {
+    id: "company1EndMonth",
+    value: "January",
+  },
+  Company1EndYear: {
+    id: "company1EndYear",
+    value: "",
+    status: "valid",
+    hasChanged: false,
+  },
+  Company1Position: {
+    id: "company1Position",
+    value: "",
+    isValid: true,
+    hasChanged: false,
+  },
+  Company1Responsibilities: {
+    id: "company1Responsibilities",
     value: "",
     isValid: true,
     hasChanged: false,
