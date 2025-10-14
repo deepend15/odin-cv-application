@@ -23,23 +23,33 @@ export default function Email({
 
   return (
     <>
-      <label htmlFor="email">Email address:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        value={emailField.value}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        className={className}
-        required
-      />
-      {(emailField.status === "invalid" ||
-        emailField.status === "missing" ||
-        (formStatus === "invalid" && emailField.status === "initial")) && (
-        <span className="error" aria-live="polite">
-          {message}
-        </span>
+      {formStatus !== "submitted" && (
+        <>
+          <label htmlFor="email">Email Address:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={emailField.value}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={className}
+            required
+          />
+          {(emailField.status === "invalid" ||
+            emailField.status === "missing" ||
+            (formStatus === "invalid" && emailField.status === "initial")) && (
+            <span className="error" aria-live="polite">
+              {message}
+            </span>
+          )}
+        </>
+      )}
+      {formStatus === "submitted" && (
+        <>
+          <span className="submitted-form-field-name">Email Address:</span>
+          <span>{emailField.value}</span>
+        </>
       )}
     </>
   );

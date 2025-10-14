@@ -25,6 +25,20 @@ button:focus-visible {
   outline: 3px solid rgb(12, 166, 237);
 }
 
+#root > p {
+  color: red;
+}
+
+.required-line {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#root > p:not([class="required-line"]) {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
 form {
   display: grid;
   gap: 25px;
@@ -51,7 +65,8 @@ fieldset > p {
   width: max-content;
 }
 
-fieldset > p > label {
+fieldset > p > label,
+.submitted-form-field-name {
   width: 150px;
 }
 

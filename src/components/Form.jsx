@@ -1,5 +1,5 @@
 import "../styles/Form.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import General from "./General";
 import Education from "./Education";
 import Experience from "./Experience";
@@ -9,11 +9,6 @@ export default function Form() {
   const [formFields, setFormFields] = useState(initialFormFields);
   const formFieldArray = Object.entries(formFields);
   const [formStatus, setFormStatus] = useState("open");
-
-  // scroll to top of page after formStatus changes
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [formStatus]);
 
   function checkValidity(e) {
     // identify field being checked
@@ -110,13 +105,24 @@ export default function Form() {
     });
     if (invalidEntries.length !== 0) {
       setFormStatus("invalid");
+      window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
     } else {
       setFormStatus("submitted");
+      window.scrollTo(0, 0);
     }
+
+    
   }
 
   return (
     <>
+      {formStatus !== "submitted" && (
+        <p className="required-line">*All fields are required*</p>
+      )}
       {formStatus === "invalid" && (
         <p>***Please correct the errors indicated below***</p>
       )}
@@ -142,7 +148,7 @@ export default function Form() {
         {formStatus !== "submitted" ? (
           <button onClick={handleSubmit}>Submit</button>
         ) : (
-          <button>Edit</button>
+          <button type="button">Edit</button>
         )}
       </form>
     </>

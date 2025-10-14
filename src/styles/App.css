@@ -8,17 +8,3 @@
 h1 {
   font-size: 3rem;
 }
-
-#root > p {
-  color: red;
-}
-
-.required-line {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-#root > p:not([class="required-line"]) {
-  font-size: 1.6rem;
-  font-weight: 500;
-}
