@@ -16,7 +16,7 @@ export default function CompanyLocation({
         onBlur={handleBlur}
         required
       />
-      {!companyLocationField.isValid && (
+      {companyLocationField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Company location required.
         </span>

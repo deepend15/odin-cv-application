@@ -1,4 +1,9 @@
-export default function Name({ nameField, handleChange, handleBlur }) {
+export default function Name({
+  formStatus,
+  nameField,
+  handleChange,
+  handleBlur,
+}) {
   return (
     <>
       <label htmlFor="name">Name:</label>
@@ -11,7 +16,7 @@ export default function Name({ nameField, handleChange, handleBlur }) {
         onBlur={handleBlur}
         required
       />
-      {!nameField.isValid && (
+      {nameField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Name required.
         </span>

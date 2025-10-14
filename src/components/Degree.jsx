@@ -22,7 +22,7 @@ export default function Degree({
         <option value="master">Master's / Equivalent</option>
         <option value="doctorate">Doctorate / Equivalent</option>
       </select>
-      {!schoolDegreeField.isValid && (
+      {schoolDegreeField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Degree required.
         </span>

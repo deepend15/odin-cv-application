@@ -16,7 +16,7 @@ export default function Position({
         onBlur={handleBlur}
         required
       />
-      {!companyPositionField.isValid && (
+      {companyPositionField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Position title required.
         </span>

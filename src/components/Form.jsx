@@ -8,6 +8,7 @@ import { initialFormFields } from "./FormFields";
 export default function Form() {
   const [formFields, setFormFields] = useState(initialFormFields);
   const formFieldArray = Object.entries(formFields);
+  const [formStatus, setFormStatus] = useState("open");
 
   function checkValidity(e) {
     // identify field being checked
@@ -23,10 +24,11 @@ export default function Form() {
     let newField = {
       ...previousField,
       value: e.target.value,
+      hasChanged: true,
     };
 
     if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
-      newField.isValid = e.target.validity.valueMissing ? false : true;
+      newField.status = e.target.validity.valueMissing ? "invalid" : "valid";
     }
 
     if (e.target.id === "email") {
@@ -56,7 +58,7 @@ export default function Form() {
 
     // update element class
 
-    if (e.target.validity.valueMissing || newField.status === "invalid") {
+    if (newField.status === "invalid" || newField.status === "missing") {
       if (e.target.id.endsWith("Degree"))
         e.target.classList.add("invalid-select");
       else {
@@ -103,9 +105,32 @@ export default function Form() {
     if (targetedField[0][1].hasChanged) checkValidity(e);
   }
 
+  function handleSubmit(e) {
+    // e.preventDefault();
+
+    // const invalidEntries = formFieldArray.filter((entry) => {
+    //   // if statement format below is due to https://eslint.org/docs/latest/rules/no-prototype-builtins
+    //   if (Object.prototype.hasOwnProperty.call(entry[1], "hasChanged")) {
+    //     if (!entry[1].hasChanged) return entry[1];
+    //     if (Object.prototype.hasOwnProperty.call(entry[1], "isValid")) {
+    //       return !entry[1].isValid;
+    //     }
+    //     if (Object.prototype.hasOwnProperty.call(entry[1], "status")) {
+    //       return entry[1].status === "invalid" || entry[1].status === "missing";
+    //     }
+    //   }
+    // });
+    // if (invalidEntries.length !== 0) {
+    //   setFormStatus("invalid");
+    // } else {
+    //   setFormStatus("submitted");
+    // }
+  }
+
   return (
     <form action="" method="">
       <General
+        formStatus={formStatus}
         formFields={formFields}
         handleChange={handleChange}
         handleBlur={handleBlur}
@@ -120,7 +145,11 @@ export default function Form() {
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
-      <button>Submit</button>
+      {formStatus !== "submitted" ? (
+        <button onClick={handleSubmit}>Submit</button>
+      ) : (
+        <button>Edit</button>
+      )}
     </form>
   );
 }

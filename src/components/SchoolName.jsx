@@ -16,7 +16,7 @@ export default function SchoolName({
         onBlur={handleBlur}
         required
       />
-      {!schoolNameField.isValid && (
+      {schoolNameField.status === "invalid" && (
         <span className="error" aria-live="polite">
           School name required.
         </span>

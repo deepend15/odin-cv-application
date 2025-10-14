@@ -16,7 +16,7 @@ export default function CompanyName({
         onBlur={handleBlur}
         required
       />
-      {!companyNameField.isValid && (
+      {companyNameField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Company name required.
         </span>

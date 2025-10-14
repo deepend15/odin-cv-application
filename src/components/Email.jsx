@@ -1,4 +1,9 @@
-export default function Email({ emailField, handleChange, handleBlur }) {
+export default function Email({
+  formStatus,
+  emailField,
+  handleChange,
+  handleBlur,
+}) {
   let message;
   if (emailField.status === "invalid") message = "Invalid email address.";
   if (emailField.status === "missing") message = "Email address required.";
@@ -15,7 +20,8 @@ export default function Email({ emailField, handleChange, handleBlur }) {
         onBlur={handleBlur}
         required
       />
-      {status !== "valid" && (
+      {(emailField.status === "invalid" ||
+        emailField.status === "missing") && (
         <span className="error" aria-live="polite">
           {message}
         </span>

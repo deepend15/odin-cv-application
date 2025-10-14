@@ -11,7 +11,7 @@ export default function Phone({ phoneField, handleChange, handleBlur }) {
         onBlur={handleBlur}
         required
       />
-      {!phoneField.isValid && (
+      {phoneField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Phone number required.
         </span>

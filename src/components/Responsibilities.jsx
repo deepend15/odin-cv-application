@@ -19,7 +19,7 @@ export default function Responsibilities({
         onBlur={handleBlur}
         required
       />
-      {!companyResponsibilitiesField.isValid && (
+      {companyResponsibilitiesField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Required.
         </span>

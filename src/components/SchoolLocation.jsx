@@ -16,7 +16,7 @@ export default function SchoolLocation({
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      {!schoolLocationField.isValid && (
+      {schoolLocationField.status === "invalid" && (
         <span className="error" aria-live="polite">
           School location required.
         </span>

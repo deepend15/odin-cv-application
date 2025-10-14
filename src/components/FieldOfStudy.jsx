@@ -18,7 +18,7 @@ export default function FieldOfStudy({
         onBlur={handleBlur}
         required
       />
-      {!schoolFieldOfStudyField.isValid && (
+      {schoolFieldOfStudyField.status === "invalid" && (
         <span className="error" aria-live="polite">
           Field of study required.
         </span>
