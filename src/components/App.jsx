@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <h1>Resume Builder</h1>
-      <p>*All fields are required*</p>
+      <p className="required-line">*All fields are required*</p>
       <Form />
     </>
   );

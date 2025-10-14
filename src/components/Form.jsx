@@ -1,5 +1,5 @@
 import "../styles/Form.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import General from "./General";
 import Education from "./Education";
 import Experience from "./Experience";
@@ -9,6 +9,11 @@ export default function Form() {
   const [formFields, setFormFields] = useState(initialFormFields);
   const formFieldArray = Object.entries(formFields);
   const [formStatus, setFormStatus] = useState("open");
+
+  // scroll to top of page after formStatus changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [formStatus]);
 
   function checkValidity(e) {
     // identify field being checked
@@ -111,30 +116,35 @@ export default function Form() {
   }
 
   return (
-    <form action="" method="">
-      <General
-        formStatus={formStatus}
-        formFields={formFields}
-        handleChange={handleChange}
-        handleBlur={handleBlur}
-      />
-      <Education
-        formStatus={formStatus}
-        formFields={formFields}
-        handleChange={handleChange}
-        handleBlur={handleBlur}
-      />
-      <Experience
-        formStatus={formStatus}
-        formFields={formFields}
-        handleChange={handleChange}
-        handleBlur={handleBlur}
-      />
-      {formStatus !== "submitted" ? (
-        <button onClick={handleSubmit}>Submit</button>
-      ) : (
-        <button>Edit</button>
+    <>
+      {formStatus === "invalid" && (
+        <p>***Please correct the errors indicated below***</p>
       )}
-    </form>
+      <form action="" method="">
+        <General
+          formStatus={formStatus}
+          formFields={formFields}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
+        <Education
+          formStatus={formStatus}
+          formFields={formFields}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
+        <Experience
+          formStatus={formStatus}
+          formFields={formFields}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
+        {formStatus !== "submitted" ? (
+          <button onClick={handleSubmit}>Submit</button>
+        ) : (
+          <button>Edit</button>
+        )}
+      </form>
+    </>
   );
 }
