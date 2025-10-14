@@ -1,7 +1,6 @@
 export default function CompanyName({
   number,
-  value,
-  isValid,
+  companyNameField,
   handleChange,
   handleBlur,
 }) {
@@ -12,12 +11,12 @@ export default function CompanyName({
         type="text"
         id={"company" + number + "Name"}
         name={"company" + number + "Name"}
-        value={value}
+        value={companyNameField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required
       />
-      {!isValid && (
+      {!companyNameField.isValid && (
         <span className="error" aria-live="polite">
           Company name required.
         </span>

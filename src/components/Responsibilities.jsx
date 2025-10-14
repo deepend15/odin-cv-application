@@ -1,7 +1,6 @@
 export default function Responsibilities({
   number,
-  value,
-  isValid,
+  companyResponsibilitiesField,
   handleChange,
   handleBlur,
 }) {
@@ -15,12 +14,12 @@ export default function Responsibilities({
         name={"company" + number + "Responsibilities"}
         rows="4"
         cols="35"
-        value={value}
+        value={companyResponsibilitiesField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required
       />
-      {!isValid && (
+      {!companyResponsibilitiesField.isValid && (
         <span className="error" aria-live="polite">
           Required.
         </span>

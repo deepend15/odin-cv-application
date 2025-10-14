@@ -12,8 +12,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
       <p>
         <CompanyName
           number="1"
-          value={formFields.Company1Name.value}
-          isValid={formFields.Company1Name.isValid}
+          companyNameField={formFields.Company1Name}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
@@ -21,8 +20,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
       <p>
         <CompanyLocation
           number="1"
-          value={formFields.Company1Location.value}
-          isValid={formFields.Company1Location.isValid}
+          companyLocationField={formFields.Company1Location}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
@@ -64,8 +62,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
       <p>
         <Position
           number="1"
-          value={formFields.Company1Position.value}
-          isValid={formFields.Company1Position.isValid}
+          companyPositionField={formFields.Company1Position}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
@@ -73,8 +70,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
       <p className="responsibilities-line">
         <Responsibilities
           number="1"
-          value={formFields.Company1Responsibilities.value}
-          isValid={formFields.Company1Responsibilities.isValid}
+          companyResponsibilitiesField={formFields.Company1Responsibilities}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />

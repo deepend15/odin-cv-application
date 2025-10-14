@@ -12,8 +12,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
       <p>
         <SchoolName
           number="1"
-          value={formFields.School1Name.value}
-          isValid={formFields.School1Name.isValid}
+          schoolNameField={formFields.School1Name}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
@@ -21,8 +20,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
       <p>
         <SchoolLocation
           number="1"
-          value={formFields.School1Location.value}
-          isValid={formFields.School1Location.isValid}
+          schoolLocationField={formFields.School1Location}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
@@ -64,8 +62,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
       <p>
         <Degree
           number="1"
-          value={formFields.School1Degree.value}
-          isValid={formFields.School1Degree.isValid}
+          schoolDegreeField={formFields.School1Degree}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
@@ -73,8 +70,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
       <p>
         <FieldOfStudy
           number="1"
-          value={formFields.School1FieldOfStudy.value}
-          isValid={formFields.School1FieldOfStudy.isValid}
+          schoolFieldOfStudyField={formFields.School1FieldOfStudy}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />

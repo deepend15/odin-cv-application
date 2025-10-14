@@ -1,7 +1,6 @@
 export default function FieldOfStudy({
   number,
-  value,
-  isValid,
+  schoolFieldOfStudyField,
   handleChange,
   handleBlur,
 }) {
@@ -14,12 +13,12 @@ export default function FieldOfStudy({
         type="text"
         id={"school" + number + "FieldOfStudy"}
         name={"school" + number + "FieldOfStudy"}
-        value={value}
+        value={schoolFieldOfStudyField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required
       />
-      {!isValid && (
+      {!schoolFieldOfStudyField.isValid && (
         <span className="error" aria-live="polite">
           Field of study required.
         </span>

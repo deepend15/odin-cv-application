@@ -1,7 +1,6 @@
 export default function Position({
   number,
-  value,
-  isValid,
+  companyPositionField,
   handleChange,
   handleBlur,
 }) {
@@ -12,12 +11,12 @@ export default function Position({
         type="text"
         id={"company" + number + "Position"}
         name={"company" + number + "Position"}
-        value={value}
+        value={companyPositionField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required
       />
-      {!isValid && (
+      {!companyPositionField.isValid && (
         <span className="error" aria-live="polite">
           Position title required.
         </span>

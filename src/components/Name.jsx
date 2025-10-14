@@ -1,4 +1,4 @@
-export default function Name({ value, isValid, handleChange, handleBlur }) {
+export default function Name({ nameField, handleChange, handleBlur }) {
   return (
     <>
       <label htmlFor="name">Name:</label>
@@ -6,12 +6,12 @@ export default function Name({ value, isValid, handleChange, handleBlur }) {
         type="text"
         id="name"
         name="name"
-        value={value}
+        value={nameField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required
       />
-      {!isValid && (
+      {!nameField.isValid && (
         <span className="error" aria-live="polite">
           Name required.
         </span>

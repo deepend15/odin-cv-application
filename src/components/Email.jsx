@@ -1,7 +1,7 @@
-export default function Email({ value, status, handleChange, handleBlur }) {
+export default function Email({ emailField, handleChange, handleBlur }) {
   let message;
-  if (status === "invalid") message = "Invalid email address.";
-  if (status === "missing") message = "Email address required.";
+  if (emailField.status === "invalid") message = "Invalid email address.";
+  if (emailField.status === "missing") message = "Email address required.";
 
   return (
     <>
@@ -10,7 +10,7 @@ export default function Email({ value, status, handleChange, handleBlur }) {
         type="email"
         id="email"
         name="email"
-        value={value}
+        value={emailField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required

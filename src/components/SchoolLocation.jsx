@@ -1,7 +1,6 @@
 export default function SchoolLocation({
   number,
-  value,
-  isValid,
+  schoolLocationField,
   handleChange,
   handleBlur,
 }) {
@@ -13,11 +12,11 @@ export default function SchoolLocation({
         id={"school" + number + "Location"}
         name={"school" + number + "Location"}
         required
-        value={value}
+        value={schoolLocationField.value}
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      {!isValid && (
+      {!schoolLocationField.isValid && (
         <span className="error" aria-live="polite">
           School location required.
         </span>

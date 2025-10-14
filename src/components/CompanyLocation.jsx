@@ -1,7 +1,6 @@
 export default function CompanyLocation({
   number,
-  value,
-  isValid,
+  companyLocationField,
   handleChange,
   handleBlur,
 }) {
@@ -12,12 +11,12 @@ export default function CompanyLocation({
         type="text"
         id={"company" + number + "Location"}
         name={"company" + number + "Location"}
-        value={value}
+        value={companyLocationField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required
       />
-      {!isValid && (
+      {!companyLocationField.isValid && (
         <span className="error" aria-live="polite">
           Company location required.
         </span>

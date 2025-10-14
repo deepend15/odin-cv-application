@@ -1,7 +1,6 @@
 export default function Degree({
   number,
-  value,
-  isValid,
+  schoolDegreeField,
   handleChange,
   handleBlur,
 }) {
@@ -11,7 +10,7 @@ export default function Degree({
       <select
         id={"school" + number + "Degree"}
         name={"school" + number + "Degree"}
-        value={value}
+        value={schoolDegreeField.value}
         onChange={handleChange}
         onBlur={handleBlur}
         required
@@ -23,7 +22,7 @@ export default function Degree({
         <option value="master">Master's / Equivalent</option>
         <option value="doctorate">Doctorate / Equivalent</option>
       </select>
-      {!isValid && (
+      {!schoolDegreeField.isValid && (
         <span className="error" aria-live="polite">
           Degree required.
         </span>

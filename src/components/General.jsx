@@ -8,24 +8,21 @@ export default function General({ formFields, handleChange, handleBlur }) {
       <legend>General</legend>
       <p>
         <Name
-          value={formFields.Name.value}
-          isValid={formFields.Name.isValid}
+          nameField={formFields.Name}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
       </p>
       <p>
         <Email
-          value={formFields.Email.value}
-          status={formFields.Email.status}
+          emailField={formFields.Email}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
       </p>
       <p>
         <Phone
-          value={formFields.Phone.value}
-          isValid={formFields.Phone.isValid}
+          phoneField={formFields.Phone}
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
