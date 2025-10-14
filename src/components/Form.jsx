@@ -55,23 +55,6 @@ export default function Form() {
       [targetedPropertyString]: newField,
     };
     setFormFields(newFormFields);
-
-    // update element class
-
-    if (newField.status === "invalid" || newField.status === "missing") {
-      if (e.target.id.endsWith("Degree"))
-        e.target.classList.add("invalid-select");
-      else {
-        if (e.target.id.endsWith("Year")) {
-          e.target.previousElementSibling.classList.add("year-error");
-        }
-        e.target.classList.add("invalid");
-      }
-    } else {
-      e.target.classList.remove("invalid");
-      e.target.classList.remove("invalid-select");
-      e.target.previousElementSibling.classList.remove("year-error");
-    }
   }
 
   function handleChange(e) {
@@ -106,25 +89,25 @@ export default function Form() {
   }
 
   function handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // const invalidEntries = formFieldArray.filter((entry) => {
-    //   // if statement format below is due to https://eslint.org/docs/latest/rules/no-prototype-builtins
-    //   if (Object.prototype.hasOwnProperty.call(entry[1], "hasChanged")) {
-    //     if (!entry[1].hasChanged) return entry[1];
-    //     if (Object.prototype.hasOwnProperty.call(entry[1], "isValid")) {
-    //       return !entry[1].isValid;
-    //     }
-    //     if (Object.prototype.hasOwnProperty.call(entry[1], "status")) {
-    //       return entry[1].status === "invalid" || entry[1].status === "missing";
-    //     }
-    //   }
-    // });
-    // if (invalidEntries.length !== 0) {
-    //   setFormStatus("invalid");
-    // } else {
-    //   setFormStatus("submitted");
-    // }
+    const invalidEntries = formFieldArray.filter((entry) => {
+      // if statement format below is due to https://eslint.org/docs/latest/rules/no-prototype-builtins
+      if (Object.prototype.hasOwnProperty.call(entry[1], "hasChanged")) {
+        if (!entry[1].hasChanged) return entry[1];
+        if (Object.prototype.hasOwnProperty.call(entry[1], "isValid")) {
+          return !entry[1].isValid;
+        }
+        if (Object.prototype.hasOwnProperty.call(entry[1], "status")) {
+          return entry[1].status === "invalid" || entry[1].status === "missing";
+        }
+      }
+    });
+    if (invalidEntries.length !== 0) {
+      setFormStatus("invalid");
+    } else {
+      setFormStatus("submitted");
+    }
   }
 
   return (
@@ -136,11 +119,13 @@ export default function Form() {
         handleBlur={handleBlur}
       />
       <Education
+        formStatus={formStatus}
         formFields={formFields}
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
       <Experience
+        formStatus={formStatus}
         formFields={formFields}
         handleChange={handleChange}
         handleBlur={handleBlur}

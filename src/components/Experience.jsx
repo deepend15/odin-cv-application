@@ -5,13 +5,19 @@ import Year from "./Year";
 import Position from "./Position";
 import Responsibilities from "./Responsibilities";
 
-export default function Experience({ formFields, handleChange, handleBlur }) {
+export default function Experience({
+  formStatus,
+  formFields,
+  handleChange,
+  handleBlur,
+}) {
   return (
     <fieldset>
       <legend>Work Experience</legend>
       <p>
         <CompanyName
           number="1"
+          formStatus={formStatus}
           companyNameField={formFields.Company1Name}
           handleChange={handleChange}
           handleBlur={handleBlur}
@@ -20,6 +26,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
       <p>
         <CompanyLocation
           number="1"
+          formStatus={formStatus}
           companyLocationField={formFields.Company1Location}
           handleChange={handleChange}
           handleBlur={handleBlur}
@@ -36,6 +43,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
             />
             <Year
               type="company1Start"
+              formStatus={formStatus}
               value={formFields.Company1StartYear.value}
               status={formFields.Company1StartYear.status}
               handleChange={handleChange}
@@ -51,6 +59,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
             />
             <Year
               type="company1End"
+              formStatus={formStatus}
               value={formFields.Company1EndYear.value}
               status={formFields.Company1EndYear.status}
               handleChange={handleChange}
@@ -62,6 +71,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
       <p>
         <Position
           number="1"
+          formStatus={formStatus}
           companyPositionField={formFields.Company1Position}
           handleChange={handleChange}
           handleBlur={handleBlur}
@@ -70,6 +80,7 @@ export default function Experience({ formFields, handleChange, handleBlur }) {
       <p className="responsibilities-line">
         <Responsibilities
           number="1"
+          formStatus={formStatus}
           companyResponsibilitiesField={formFields.Company1Responsibilities}
           handleChange={handleChange}
           handleBlur={handleBlur}

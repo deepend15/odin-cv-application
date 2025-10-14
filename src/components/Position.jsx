@@ -1,9 +1,18 @@
 export default function Position({
   number,
+  formStatus,
   companyPositionField,
   handleChange,
   handleBlur,
 }) {
+  let className;
+  if (
+    companyPositionField.status === "invalid" ||
+    (formStatus === "invalid" && companyPositionField.status === "initial")
+  )
+    className = "invalid";
+  else className = "";
+
   return (
     <>
       <label htmlFor={"company" + number + "Position"}>Position Title:</label>
@@ -14,9 +23,12 @@ export default function Position({
         value={companyPositionField.value}
         onChange={handleChange}
         onBlur={handleBlur}
+        className={className}
         required
       />
-      {companyPositionField.status === "invalid" && (
+      {(companyPositionField.status === "invalid" ||
+        (formStatus === "invalid" &&
+          companyPositionField.status === "initial")) && (
         <span className="error" aria-live="polite">
           Position title required.
         </span>

@@ -5,13 +5,19 @@ import Year from "./Year";
 import Degree from "./Degree";
 import FieldOfStudy from "./FieldOfStudy";
 
-export default function Education({ formFields, handleChange, handleBlur }) {
+export default function Education({
+  formStatus,
+  formFields,
+  handleChange,
+  handleBlur,
+}) {
   return (
     <fieldset>
       <legend>Education</legend>
       <p>
         <SchoolName
           number="1"
+          formStatus={formStatus}
           schoolNameField={formFields.School1Name}
           handleChange={handleChange}
           handleBlur={handleBlur}
@@ -20,6 +26,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
       <p>
         <SchoolLocation
           number="1"
+          formStatus={formStatus}
           schoolLocationField={formFields.School1Location}
           handleChange={handleChange}
           handleBlur={handleBlur}
@@ -36,6 +43,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
             />
             <Year
               type="school1Start"
+              formStatus={formStatus}
               value={formFields.School1StartYear.value}
               status={formFields.School1StartYear.status}
               handleChange={handleChange}
@@ -51,6 +59,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
             />
             <Year
               type="school1End"
+              formStatus={formStatus}
               value={formFields.School1EndYear.value}
               status={formFields.School1EndYear.status}
               handleChange={handleChange}
@@ -62,6 +71,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
       <p>
         <Degree
           number="1"
+          formStatus={formStatus}
           schoolDegreeField={formFields.School1Degree}
           handleChange={handleChange}
           handleBlur={handleBlur}
@@ -70,6 +80,7 @@ export default function Education({ formFields, handleChange, handleBlur }) {
       <p>
         <FieldOfStudy
           number="1"
+          formStatus={formStatus}
           schoolFieldOfStudyField={formFields.School1FieldOfStudy}
           handleChange={handleChange}
           handleBlur={handleBlur}

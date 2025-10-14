@@ -1,9 +1,18 @@
 export default function Degree({
   number,
+  formStatus,
   schoolDegreeField,
   handleChange,
   handleBlur,
 }) {
+  let className;
+  if (
+    schoolDegreeField.status === "invalid" ||
+    (formStatus === "invalid" && schoolDegreeField.status === "initial")
+  )
+    className = "invalid-select";
+  else className = "";
+
   return (
     <>
       <label htmlFor={"school" + number + "Degree"}>Degree received:</label>
@@ -13,6 +22,7 @@ export default function Degree({
         value={schoolDegreeField.value}
         onChange={handleChange}
         onBlur={handleBlur}
+        className={className}
         required
       >
         <option value="">--Select one--</option>
@@ -22,7 +32,9 @@ export default function Degree({
         <option value="master">Master's / Equivalent</option>
         <option value="doctorate">Doctorate / Equivalent</option>
       </select>
-      {schoolDegreeField.status === "invalid" && (
+      {(schoolDegreeField.status === "invalid" ||
+        (formStatus === "invalid" &&
+          schoolDegreeField.status === "initial")) && (
         <span className="error" aria-live="polite">
           Degree required.
         </span>

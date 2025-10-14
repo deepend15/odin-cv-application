@@ -4,9 +4,22 @@ export default function Email({
   handleChange,
   handleBlur,
 }) {
+  let className;
+  if (
+    emailField.status === "missing" ||
+    emailField.status === "invalid" ||
+    (formStatus === "invalid" && emailField.status === "initial")
+  )
+    className = "invalid";
+  else className = "";
+
   let message;
   if (emailField.status === "invalid") message = "Invalid email address.";
-  if (emailField.status === "missing") message = "Email address required.";
+  if (
+    emailField.status === "missing" ||
+    (formStatus === "invalid" && emailField.status === "initial")
+  )
+    message = "Email address required.";
 
   return (
     <>
@@ -18,10 +31,12 @@ export default function Email({
         value={emailField.value}
         onChange={handleChange}
         onBlur={handleBlur}
+        className={className}
         required
       />
       {(emailField.status === "invalid" ||
-        emailField.status === "missing") && (
+        emailField.status === "missing" ||
+        (formStatus === "invalid" && emailField.status === "initial")) && (
         <span className="error" aria-live="polite">
           {message}
         </span>
