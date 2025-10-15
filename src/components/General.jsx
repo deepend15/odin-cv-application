@@ -8,15 +8,10 @@ export default function General({
   handleChange,
   handleBlur,
 }) {
-  let className;
-  formStatus === "submitted"
-    ? (className = "submitted-form-line")
-    : (className = "");
-
   return (
     <fieldset>
       <legend>General</legend>
-      <p className={className}>
+      <p>
         <Name
           formStatus={formStatus}
           nameField={formFields.Name}
@@ -24,7 +19,7 @@ export default function General({
           handleBlur={handleBlur}
         />
       </p>
-      <p className={className}>
+      <p>
         <Email
           formStatus={formStatus}
           emailField={formFields.Email}
@@ -32,7 +27,7 @@ export default function General({
           handleBlur={handleBlur}
         />
       </p>
-      <p className={className}>
+      <p>
         <Phone
           formStatus={formStatus}
           phoneField={formFields.Phone}

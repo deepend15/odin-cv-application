@@ -15,33 +15,23 @@ export default function CompanyName({
 
   return (
     <>
-      {formStatus !== "submitted" && (
-        <>
-          <label htmlFor={"company" + number + "Name"}>Company Name:</label>
-          <input
-            type="text"
-            id={"company" + number + "Name"}
-            name={"company" + number + "Name"}
-            value={companyNameField.value}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={className}
-            required
-          />
-          {(companyNameField.status === "invalid" ||
-            (formStatus === "invalid" &&
-              companyNameField.status === "initial")) && (
-            <span className="error" aria-live="polite">
-              Company name required.
-            </span>
-          )}
-        </>
-      )}
-      {formStatus === "submitted" && (
-        <>
-          <span className="submitted-form-field-name">Company Name:</span>
-          <span>{companyNameField.value}</span>
-        </>
+      <label htmlFor={"company" + number + "Name"}>Company Name:</label>
+      <input
+        type="text"
+        id={"company" + number + "Name"}
+        name={"company" + number + "Name"}
+        value={companyNameField.value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        className={className}
+        required
+      />
+      {(companyNameField.status === "invalid" ||
+        (formStatus === "invalid" &&
+          companyNameField.status === "initial")) && (
+        <span className="error" aria-live="polite">
+          Company name required.
+        </span>
       )}
     </>
   );

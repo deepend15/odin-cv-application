@@ -11,15 +11,10 @@ export default function Education({
   handleChange,
   handleBlur,
 }) {
-  let className;
-  formStatus === "submitted"
-    ? (className = "submitted-form-line")
-    : (className = "");
-
   return (
     <fieldset>
       <legend>Education</legend>
-      <p className={className}>
+      <p>
         <SchoolName
           number="1"
           formStatus={formStatus}
@@ -28,7 +23,7 @@ export default function Education({
           handleBlur={handleBlur}
         />
       </p>
-      <p className={className}>
+      <p>
         <SchoolLocation
           number="1"
           formStatus={formStatus}
@@ -37,55 +32,43 @@ export default function Education({
           handleBlur={handleBlur}
         />
       </p>
-      {formStatus !== "submitted" && (
-        <div className="year-line">
-          <span>Years Attended:</span>
-          <div>
-            <div className="month-and-year">
-              <Month
-                type="school1Start"
-                value={formFields.School1StartMonth.value}
-                handleChange={handleChange}
-              />
-              <Year
-                type="school1Start"
-                formStatus={formStatus}
-                value={formFields.School1StartYear.value}
-                status={formFields.School1StartYear.status}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-              />
-            </div>
-            <span>to</span>
-            <div className="month-and-year">
-              <Month
-                type="school1End"
-                value={formFields.School1EndMonth.value}
-                handleChange={handleChange}
-              />
-              <Year
-                type="school1End"
-                formStatus={formStatus}
-                value={formFields.School1EndYear.value}
-                status={formFields.School1EndYear.status}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-              />
-            </div>
+      <div className="year-line">
+        <span>Years Attended:</span>
+        <div>
+          <div className="month-and-year">
+            <Month
+              type="school1Start"
+              value={formFields.School1StartMonth.value}
+              handleChange={handleChange}
+            />
+            <Year
+              type="school1Start"
+              formStatus={formStatus}
+              value={formFields.School1StartYear.value}
+              status={formFields.School1StartYear.status}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
+          </div>
+          <span>to</span>
+          <div className="month-and-year">
+            <Month
+              type="school1End"
+              value={formFields.School1EndMonth.value}
+              handleChange={handleChange}
+            />
+            <Year
+              type="school1End"
+              formStatus={formStatus}
+              value={formFields.School1EndYear.value}
+              status={formFields.School1EndYear.status}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
           </div>
         </div>
-      )}
-      {formStatus === "submitted" && (
-        <p className={className}>
-          <span className="submitted-form-field-name">Years Attended:</span>
-          <span>
-            {formFields.School1StartMonth.value}{" "}
-            {formFields.School1StartYear.value} -{" "}
-            {formFields.School1EndMonth.value} {formFields.School1EndYear.value}
-          </span>
-        </p>
-      )}
-      <p className={className}>
+      </div>
+      <p>
         <Degree
           number="1"
           formStatus={formStatus}
@@ -94,7 +77,7 @@ export default function Education({
           handleBlur={handleBlur}
         />
       </p>
-      <p className={className}>
+      <p>
         <FieldOfStudy
           number="1"
           formStatus={formStatus}

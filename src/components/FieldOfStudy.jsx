@@ -15,35 +15,25 @@ export default function FieldOfStudy({
 
   return (
     <>
-      {formStatus !== "submitted" && (
-        <>
-          <label htmlFor={"school" + number + "FieldOfStudy"}>
-            Field of Study:
-          </label>
-          <input
-            type="text"
-            id={"school" + number + "FieldOfStudy"}
-            name={"school" + number + "FieldOfStudy"}
-            value={schoolFieldOfStudyField.value}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={className}
-            required
-          />
-          {(schoolFieldOfStudyField.status === "invalid" ||
-            (formStatus === "invalid" &&
-              schoolFieldOfStudyField.status === "initial")) && (
-            <span className="error" aria-live="polite">
-              Field of study required.
-            </span>
-          )}
-        </>
-      )}
-      {formStatus === "submitted" && (
-        <>
-          <span className="submitted-form-field-name">Field of Study:</span>
-          <span>{schoolFieldOfStudyField.value}</span>
-        </>
+      <label htmlFor={"school" + number + "FieldOfStudy"}>
+        Field of Study:
+      </label>
+      <input
+        type="text"
+        id={"school" + number + "FieldOfStudy"}
+        name={"school" + number + "FieldOfStudy"}
+        value={schoolFieldOfStudyField.value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        className={className}
+        required
+      />
+      {(schoolFieldOfStudyField.status === "invalid" ||
+        (formStatus === "invalid" &&
+          schoolFieldOfStudyField.status === "initial")) && (
+        <span className="error" aria-live="polite">
+          Field of study required.
+        </span>
       )}
     </>
   );

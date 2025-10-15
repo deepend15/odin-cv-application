@@ -11,17 +11,10 @@ export default function Experience({
   handleChange,
   handleBlur,
 }) {
-  let className;
-  formStatus === "submitted"
-    ? (className = "submitted-form-line")
-    : (className = "");
-
-  const responsibilitiesLineClasses = `responsibilities-line ${className}`;
-
   return (
     <fieldset>
       <legend>Work Experience</legend>
-      <p className={className}>
+      <p>
         <CompanyName
           number="1"
           formStatus={formStatus}
@@ -30,7 +23,7 @@ export default function Experience({
           handleBlur={handleBlur}
         />
       </p>
-      <p className={className}>
+      <p>
         <CompanyLocation
           number="1"
           formStatus={formStatus}
@@ -39,56 +32,43 @@ export default function Experience({
           handleBlur={handleBlur}
         />
       </p>
-      {formStatus !== "submitted" && (
-        <div className="year-line">
-          <span>Years Worked:</span>
-          <div>
-            <div className="month-and-year">
-              <Month
-                type="company1Start"
-                value={formFields.Company1StartMonth.value}
-                handleChange={handleChange}
-              />
-              <Year
-                type="company1Start"
-                formStatus={formStatus}
-                value={formFields.Company1StartYear.value}
-                status={formFields.Company1StartYear.status}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-              />
-            </div>
-            <span>to</span>
-            <div className="month-and-year">
-              <Month
-                type="company1End"
-                value={formFields.Company1EndMonth.value}
-                handleChange={handleChange}
-              />
-              <Year
-                type="company1End"
-                formStatus={formStatus}
-                value={formFields.Company1EndYear.value}
-                status={formFields.Company1EndYear.status}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-              />
-            </div>
+      <div className="year-line">
+        <span>Years Worked:</span>
+        <div>
+          <div className="month-and-year">
+            <Month
+              type="company1Start"
+              value={formFields.Company1StartMonth.value}
+              handleChange={handleChange}
+            />
+            <Year
+              type="company1Start"
+              formStatus={formStatus}
+              value={formFields.Company1StartYear.value}
+              status={formFields.Company1StartYear.status}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
+          </div>
+          <span>to</span>
+          <div className="month-and-year">
+            <Month
+              type="company1End"
+              value={formFields.Company1EndMonth.value}
+              handleChange={handleChange}
+            />
+            <Year
+              type="company1End"
+              formStatus={formStatus}
+              value={formFields.Company1EndYear.value}
+              status={formFields.Company1EndYear.status}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
           </div>
         </div>
-      )}
-      {formStatus === "submitted" && (
-        <p className={className}>
-          <span className="submitted-form-field-name">Years Worked:</span>
-          <span>
-            {formFields.Company1StartMonth.value}{" "}
-            {formFields.Company1StartYear.value} -{" "}
-            {formFields.Company1EndMonth.value}{" "}
-            {formFields.Company1EndYear.value}
-          </span>
-        </p>
-      )}
-      <p className={className}>
+      </div>
+      <p>
         <Position
           number="1"
           formStatus={formStatus}
@@ -97,7 +77,7 @@ export default function Experience({
           handleBlur={handleBlur}
         />
       </p>
-      <p className={responsibilitiesLineClasses}>
+      <p className="responsibilities-line">
         <Responsibilities
           number="1"
           formStatus={formStatus}

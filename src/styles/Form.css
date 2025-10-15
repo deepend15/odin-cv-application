@@ -69,20 +69,19 @@ fieldset > p {
   align-items: flex-start;
 }
 
-.submitted-form-line {
+/* .submitted-form-line {
   width: auto;
   line-height: 1.5;
-}
+} */
 
-fieldset > p > label,
-.submitted-form-field-name {
+fieldset > p > label {
   width: 150px;
   flex-shrink: 0;
 }
 
-.responsibilities-line > span:last-child {
+/* .responsibilities-line.submitted-form-line {
   white-space: pre-wrap;
-}
+} */
 
 .invalid {
   background-color: rgb(255, 217, 217);
