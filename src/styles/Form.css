@@ -59,15 +59,29 @@ fieldset > p:not(:last-child) {
 
 fieldset > p {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
   position: relative;
   width: max-content;
+}
+
+.responsibilities-line {
+  align-items: flex-start;
+}
+
+.submitted-form-line {
+  width: auto;
+  line-height: 1.5;
 }
 
 fieldset > p > label,
 .submitted-form-field-name {
   width: 150px;
+  flex-shrink: 0;
+}
+
+.responsibilities-line > span:last-child {
+  white-space: pre-wrap;
 }
 
 .invalid {
@@ -131,10 +145,6 @@ fieldset > p > label,
 
 .month-and-year input {
   max-width: 100px;
-}
-
-.responsibilities-line {
-  align-items: flex-start;
 }
 
 textarea {

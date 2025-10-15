@@ -106,16 +106,20 @@ export default function Form() {
     if (invalidEntries.length !== 0) {
       setFormStatus("invalid");
       window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     } else {
       setFormStatus("submitted");
       window.scrollTo(0, 0);
     }
+  }
 
-    
+  function handleEdit(e) {
+    e.preventDefault();
+    setFormStatus("open");
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -148,7 +152,7 @@ export default function Form() {
         {formStatus !== "submitted" ? (
           <button onClick={handleSubmit}>Submit</button>
         ) : (
-          <button type="button">Edit</button>
+          <button onClick={handleEdit}>Edit</button>
         )}
       </form>
     </>
