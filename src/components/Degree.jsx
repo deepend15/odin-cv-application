@@ -13,17 +13,6 @@ export default function Degree({
     className = "invalid-select";
   else className = "";
 
-  // let submittedFormDegreeValue;
-  // schoolDegreeField.value === "diploma"
-  //   ? (submittedFormDegreeValue = "Diploma / GED")
-  //   : schoolDegreeField.value === "associate"
-  //   ? (submittedFormDegreeValue = "Associate's Degree")
-  //   : schoolDegreeField.value === "bachelor"
-  //   ? (submittedFormDegreeValue = "Bachelor's Degree")
-  //   : schoolDegreeField.value === "master"
-  //   ? (submittedFormDegreeValue = "Master's Degree / Equivalent")
-  //   : (submittedFormDegreeValue = "Doctorate / Equivalent");
-
   return (
     <>
       <label htmlFor={"school" + number + "Degree"}>Degree Received:</label>

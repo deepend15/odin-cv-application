@@ -2,6 +2,7 @@ import "../styles/App.css";
 import { useState } from "react";
 import { initialFormFields } from "./FormFields";
 import Form from "./Form";
+import ResumeDisplay from "./ResumeDisplay";
 
 function App() {
   const [formFields, setFormFields] = useState(initialFormFields);
@@ -120,9 +121,14 @@ function App() {
     window.scrollTo(0, 0);
   }
 
+  let h1Text;
+  formStatus === "submitted"
+    ? (h1Text = formFields.Name.value + " Resume")
+    : (h1Text = "Resume Builder");
+
   return (
     <>
-      <h1>Resume Builder</h1>
+      <h1>{h1Text}</h1>
       {formStatus !== "submitted" && (
         <Form
           formStatus={formStatus}
@@ -133,8 +139,7 @@ function App() {
         />
       )}
       {formStatus === "submitted" && (
-        <>
-        </>
+        <ResumeDisplay formFields={formFields} handleEdit={handleEdit} />
       )}
     </>
   );

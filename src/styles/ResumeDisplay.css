@@ -1,0 +1,40 @@
+.resume {
+  margin: 10px 0;
+  display: grid;
+  gap: 25px;
+  line-height: 1.5;
+  border: 1px solid silver;
+  padding: 30px;
+}
+
+.general-section > p:first-child {
+  font-weight: 500;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+pre {
+  font: inherit;
+}
+
+.edit-button {
+  font-size: 2rem;
+  padding: 8px 28px;
+  border-radius: 12px;
+  background-color: rgb(230, 230, 230);
+  border: 2px outset silver;
+}
+
+.edit-button:hover {
+  background-color: rgb(218, 218, 218);
+}
+
+.edit-button:active {
+  border-style: inset;
+  background-color: rgb(204, 204, 204);
+}
