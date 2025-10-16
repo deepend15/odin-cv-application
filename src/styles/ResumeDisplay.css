@@ -17,7 +17,6 @@ section {
 .general-section > p:first-child {
   font-weight: 500;
   font-size: 2.4rem;
-  /* margin-bottom: 3px; */
 }
 .general-section > p:not(:first-child) {
   font-size: 1.8rem;
@@ -26,16 +25,24 @@ section {
 h2 {
   font-weight: bold;
   font-size: 1.8rem;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 h3 {
   font-weight: 500;
 }
 
+.position-title {
+  margin-top: 3px;
+}
+
+.work-year {
+  margin-bottom: 3px;
+}
+
 pre {
   font: inherit;
-  padding-left: 5px;
+  padding-left: 10px;
   white-space: pre-wrap;
   overflow-wrap: break-word;
 }

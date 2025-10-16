@@ -40,13 +40,13 @@ export default function ResumeDisplay({ formFields, handleEdit }) {
           <h2>Work Experience</h2>
           <h3>{formFields.Company1Name.value}</h3>
           <p>{formFields.Company1Location.value}</p>
-          <p>
+          <p className="position-title">{formFields.Company1Position.value}</p>
+          <p className="work-year">
             {formFields.Company1StartMonth.value}{" "}
             {formFields.Company1StartYear.value} -{" "}
             {formFields.Company1EndMonth.value}{" "}
             {formFields.Company1EndYear.value}
           </p>
-          <p>{formFields.Company1Position.value}</p>
           <pre>{formFields.Company1Responsibilities.value}</pre>
         </section>
       </main>
