@@ -147,12 +147,14 @@ function App() {
     const invalidEntries = formFieldArray.filter((entry) => {
       // if statement format below is due to https://eslint.org/docs/latest/rules/no-prototype-builtins
       if (Object.prototype.hasOwnProperty.call(entry[1], "hasChanged")) {
-        if (!entry[1].hasChanged) return entry[1];
-        if (Object.prototype.hasOwnProperty.call(entry[1], "isValid")) {
-          return !entry[1].isValid;
-        }
-        if (Object.prototype.hasOwnProperty.call(entry[1], "status")) {
+        if (!entry[1].id.endsWith("FieldOfStudy")) {
+          if (!entry[1].hasChanged) return entry[1];
           return entry[1].status === "invalid" || entry[1].status === "missing";
+        } else {
+          if (entry[1].isPresent) {
+            if (!entry[1].hasChanged) return entry[1];
+            return entry[1].status === "invalid";
+          } 
         }
       }
     });

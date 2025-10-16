@@ -30,7 +30,10 @@ export default function ResumeDisplay({ formFields, handleEdit }) {
             {formFields.School1EndMonth.value} {formFields.School1EndYear.value}
           </p>
           <p>
-            {resumeDegreeValue}: {formFields.School1FieldOfStudy.value}
+            {resumeDegreeValue}
+            {formFields.School1Degree.value !== "diploma" && (
+              <>: {formFields.School1FieldOfStudy.value}</>
+            )}
           </p>
         </section>
         <section className="experience-section">
