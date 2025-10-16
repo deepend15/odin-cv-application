@@ -1,25 +1,43 @@
 .resume {
+  font-size: 1.6rem;
   margin: 10px 0;
   display: grid;
-  gap: 25px;
+  gap: 28px;
   line-height: 1.5;
   border: 1px solid silver;
   padding: 30px;
+  max-width: 600px;
+}
+
+section {
+  display: grid;
+  gap: 5px;
 }
 
 .general-section > p:first-child {
   font-weight: 500;
-  font-size: 2.6rem;
-  margin-bottom: 10px;
+  font-size: 2.4rem;
+  /* margin-bottom: 3px; */
+}
+.general-section > p:not(:first-child) {
+  font-size: 1.8rem;
 }
 
 h2 {
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 2px;
+}
+
+h3 {
+  font-weight: 500;
 }
 
 pre {
   font: inherit;
+  padding-left: 5px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 .edit-button {

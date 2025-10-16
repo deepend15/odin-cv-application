@@ -22,7 +22,7 @@ export default function ResumeDisplay({ formFields, handleEdit }) {
         </section>
         <section className="education-section">
           <h2>Education</h2>
-          <p>{formFields.School1Name.value}</p>
+          <h3>{formFields.School1Name.value}</h3>
           <p>{formFields.School1Location.value}</p>
           <p>
             {formFields.School1StartMonth.value}{" "}
@@ -35,7 +35,7 @@ export default function ResumeDisplay({ formFields, handleEdit }) {
         </section>
         <section className="experience-section">
           <h2>Work Experience</h2>
-          <p>{formFields.Company1Name.value}</p>
+          <h3>{formFields.Company1Name.value}</h3>
           <p>{formFields.Company1Location.value}</p>
           <p>
             {formFields.Company1StartMonth.value}{" "}
