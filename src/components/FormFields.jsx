@@ -80,6 +80,7 @@ export const initialFormFields = {
   },
   School1FieldOfStudy: {
     id: "school1FieldOfStudy",
+    isPresent: false,
     value: "",
     status: "initial",
     hasChanged: false,

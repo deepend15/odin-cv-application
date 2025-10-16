@@ -77,15 +77,18 @@ export default function Education({
           handleBlur={handleBlur}
         />
       </p>
-      <p>
-        <FieldOfStudy
-          number="1"
-          formStatus={formStatus}
-          schoolFieldOfStudyField={formFields.School1FieldOfStudy}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
+      {formFields.School1Degree.value !== "" &&
+        formFields.School1Degree.value !== "diploma" && (
+          <p>
+            <FieldOfStudy
+              number="1"
+              formStatus={formStatus}
+              schoolFieldOfStudyField={formFields.School1FieldOfStudy}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
+          </p>
+        )}
     </fieldset>
   );
 }

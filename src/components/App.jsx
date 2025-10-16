@@ -9,82 +9,136 @@ function App() {
   const formFieldArray = Object.entries(formFields);
   const [formStatus, setFormStatus] = useState("open");
 
-  function checkValidity(e) {
+  function handleChange(e) {
     // identify field being checked
     const targetedField = formFieldArray.filter(
       (field) => field[1].id === e.target.id
     );
-
     // identify Object property to update
     const targetedPropertyString = targetedField[0][0];
-
     // create new version of the property / value
-    const previousField = formFields[targetedPropertyString];
-    let newField = {
-      ...previousField,
-      value: e.target.value,
-      hasChanged: true,
-    };
-
-    if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
-      newField.status = e.target.validity.valueMissing ? "invalid" : "valid";
-    }
-
-    if (e.target.id === "email") {
-      newField.status = e.target.validity.valueMissing
-        ? "missing"
-        : e.target.validity.typeMismatch
-        ? "invalid"
-        : "valid";
-    }
-
-    if (e.target.id.endsWith("Year")) {
-      const regex = /^\d{4}$/;
-
-      newField.status = e.target.validity.valueMissing
-        ? "missing"
-        : !regex.test(e.target.value)
-        ? "invalid"
-        : "valid";
-    }
-
-    // create new 'formFields' with new property / value, and update state
-    const newFormFields = {
-      ...formFields,
-      [targetedPropertyString]: newField,
-    };
-    setFormFields(newFormFields);
-  }
-
-  function handleChange(e) {
-    const targetedField = formFieldArray.filter(
-      (field) => field[1].id === e.target.id
-    );
-    const targetedPropertyString = targetedField[0][0];
     const previousField = formFields[targetedPropertyString];
     const newField = {
       ...previousField,
       value: e.target.value,
       hasChanged: true,
     };
-    const newFormFields = {
-      ...formFields,
-      [targetedPropertyString]: newField,
-    };
-    setFormFields(newFormFields);
 
+    // if field was already flagged as invalid, check validity
     if (
       e.target.classList.contains("invalid") ||
       e.target.classList.contains("invalid-select")
-    )
-      checkValidity(e);
+    ) {
+      if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
+        newField.status = e.target.validity.valueMissing ? "invalid" : "valid";
+      }
+
+      if (e.target.id === "email") {
+        newField.status = e.target.validity.valueMissing
+          ? "missing"
+          : e.target.validity.typeMismatch
+          ? "invalid"
+          : "valid";
+      }
+
+      if (e.target.id.endsWith("Year")) {
+        const regex = /^\d{4}$/;
+
+        newField.status = e.target.validity.valueMissing
+          ? "missing"
+          : !regex.test(e.target.value)
+          ? "invalid"
+          : "valid";
+      }
+    }
+
+    // create new 'formFields' with new property / value
+    let newFormFields;
+    if (e.target.id.endsWith("Degree")) {
+      const parentSchoolField = formFieldArray.filter((field) => {
+        if (field[1].childIds !== undefined) {
+          return field[1].childIds.includes(e.target.id);
+        }
+      });
+      const targetedFieldOfStudyIdArray =
+        parentSchoolField[0][1].childIds.filter((id) =>
+          id.endsWith("FieldOfStudy")
+        );
+      const targetedFieldOfStudyId = targetedFieldOfStudyIdArray[0];
+      const targetedFieldOfStudyField = formFieldArray.filter(
+        (field) => field[1].id === targetedFieldOfStudyId
+      );
+      const fieldOfStudyPropertyString = targetedFieldOfStudyField[0][0];
+      const previousFieldOfStudyField = formFields[fieldOfStudyPropertyString];
+      let newFieldOfStudyField;
+      if (e.target.value !== "" && e.target.value !== "diploma") {
+        newFieldOfStudyField = {
+          ...previousFieldOfStudyField,
+          isPresent: true,
+        };
+      } else {
+        newFieldOfStudyField = {
+          ...previousFieldOfStudyField,
+          isPresent: false,
+          status: "initial",
+          value: "",
+          hasChanged: false,
+        };
+      }
+      newFormFields = {
+        ...formFields,
+        [targetedPropertyString]: newField,
+        [fieldOfStudyPropertyString]: newFieldOfStudyField,
+      };
+    } else {
+      newFormFields = {
+        ...formFields,
+        [targetedPropertyString]: newField,
+      };
+    }
+
+    // update state
+    setFormFields(newFormFields);
   }
 
   function handleBlur(e) {
     const targetedField = formFieldArray.filter(
       (field) => field[1].id === e.target.id
     );
-    if (targetedField[0][1].hasChanged) checkValidity(e);
+
+    if (targetedField[0][1].hasChanged) {
+      const targetedPropertyString = targetedField[0][0];
+      const previousField = formFields[targetedPropertyString];
+      const newField = { ...previousField };
+
+      if (!(e.target.id === "email" || e.target.id.endsWith("Year"))) {
+        newField.status = e.target.validity.valueMissing ? "invalid" : "valid";
+      }
+
+      if (e.target.id === "email") {
+        newField.status = e.target.validity.valueMissing
+          ? "missing"
+          : e.target.validity.typeMismatch
+          ? "invalid"
+          : "valid";
+      }
+
+      if (e.target.id.endsWith("Year")) {
+        const regex = /^\d{4}$/;
+
+        newField.status = e.target.validity.valueMissing
+          ? "missing"
+          : !regex.test(e.target.value)
+          ? "invalid"
+          : "valid";
+      }
+
+      const newFormFields = {
+        ...formFields,
+        [targetedPropertyString]: newField,
+      };
+      setFormFields(newFormFields);
+    }
   }
 
   function handleSubmit(e) {
