@@ -112,7 +112,11 @@ export default function Education({
           </div>
         );
       })}
-      <button type="button" onClick={handleAddSchoolOrWork}>
+      <button
+        type="button"
+        className="add-button"
+        onClick={handleAddSchoolOrWork}
+      >
         + Add School
       </button>
     </fieldset>

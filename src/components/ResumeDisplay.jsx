@@ -52,19 +52,6 @@ export default function ResumeDisplay({ formFields, handleEdit }) {
               </div>
             );
           })}
-          {/* <h3>{formFields.School1Name.value}</h3>
-          <p>{formFields.School1Location.value}</p>
-          <p>
-            {formFields.School1StartMonth.value}{" "}
-            {formFields.School1StartYear.value} -{" "}
-            {formFields.School1EndMonth.value} {formFields.School1EndYear.value}
-          </p>
-          <p>
-            {resumeDegreeValue}
-            {formFields.School1Degree.value !== "diploma" && (
-              <>: {formFields.School1FieldOfStudy.value}</>
-            )}
-          </p> */}
         </section>
         <section className="experience-section">
           <h2>Work Experience</h2>
@@ -91,16 +78,6 @@ export default function ResumeDisplay({ formFields, handleEdit }) {
               </div>
             );
           })}
-          {/* <h3>{formFields.Company1Name.value}</h3>
-          <p>{formFields.Company1Location.value}</p>
-          <p className="position-title">{formFields.Company1Position.value}</p>
-          <p className="work-year">
-            {formFields.Company1StartMonth.value}{" "}
-            {formFields.Company1StartYear.value} -{" "}
-            {formFields.Company1EndMonth.value}{" "}
-            {formFields.Company1EndYear.value}
-          </p>
-          <pre>{formFields.Company1Responsibilities.value}</pre> */}
         </section>
       </main>
       <button onClick={handleEdit} className="edit-button">

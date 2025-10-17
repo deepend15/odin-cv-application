@@ -52,7 +52,7 @@ export default function Experience({
               />
             </p>
             <div className="year-line">
-              <span>Years Attended:</span>
+              <span>Years Worked:</span>
               <div>
                 <div className="month-and-year">
                   <Month
@@ -108,7 +108,11 @@ export default function Experience({
           </div>
         );
       })}
-      <button type="button" onClick={handleAddSchoolOrWork}>
+      <button
+        type="button"
+        className="add-button"
+        onClick={handleAddSchoolOrWork}
+      >
         + Add Company
       </button>
     </fieldset>

@@ -14,14 +14,9 @@ html {
   padding: 0;
 }
 
-/* :root {
-    --main-tan: rgb(247, 212, 146);
-} */
-
 body {
   font-size: 1.8rem;
-  font-family:
-    system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -45,6 +40,10 @@ ul {
   list-style-type: none;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
 }
