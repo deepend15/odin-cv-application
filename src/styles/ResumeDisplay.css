@@ -6,7 +6,7 @@
   line-height: 1.5;
   border: 1px solid silver;
   padding: 30px;
-  max-width: 600px;
+  max-width: 625px;
 }
 
 section {
@@ -30,6 +30,10 @@ h2 {
 
 h3 {
   font-weight: 500;
+}
+
+section > div:not(:last-child) {
+  margin-bottom: 8px;
 }
 
 .position-title {
