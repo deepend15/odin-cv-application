@@ -71,15 +71,6 @@ fieldset > p {
   width: max-content;
 }
 
-/* below should be unnecessary */
-/* fieldset > p {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-  width: max-content;
-} */
-
 .school-company-block > p[class="responsibilities-line"] {
   align-items: flex-start;
 }
@@ -89,12 +80,6 @@ fieldset > p > label {
   width: 150px;
   flex-shrink: 0;
 }
-
-/* below should be unnecessary */
-/* fieldset > p > label {
-  width: 150px;
-  flex-shrink: 0;
-} */
 
 .invalid {
   background-color: rgb(255, 217, 217);
