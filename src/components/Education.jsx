@@ -12,84 +12,106 @@ export default function Education({
   handleBlur,
   handleAddSchoolOrWork,
 }) {
+  const schoolIdsArray = formFields.Education.childIds;
+
   return (
     <fieldset>
       <legend>Education</legend>
-      <p>
-        <SchoolName
-          number="1"
-          formStatus={formStatus}
-          schoolNameField={formFields.School1Name}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
-      <p>
-        <SchoolLocation
-          number="1"
-          formStatus={formStatus}
-          schoolLocationField={formFields.School1Location}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
-      <div className="year-line">
-        <span>Years Attended:</span>
-        <div>
-          <div className="month-and-year">
-            <Month
-              type="school1Start"
-              value={formFields.School1StartMonth.value}
-              handleChange={handleChange}
-            />
-            <Year
-              type="school1Start"
-              formStatus={formStatus}
-              value={formFields.School1StartYear.value}
-              status={formFields.School1StartYear.status}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-            />
+      {schoolIdsArray.map((id) => {
+        const formFieldArray = Object.entries(formFields);
+        function getField(string) {
+          const targetedFieldArray = formFieldArray.filter(
+            (field) => field[1].id === id + string
+          );
+          const targetedFieldName = targetedFieldArray[0][0];
+          return formFields[targetedFieldName];
+        }
+        const schoolStartMonth = getField("StartMonth");
+        const schoolStartYear = getField("StartYear");
+        const schoolEndMonth = getField("EndMonth");
+        const schoolEndYear = getField("EndYear");
+        const schoolDegreeField = getField("Degree");
+
+        return (
+          <div className="school-company-block" key={id}>
+            <p>
+              <SchoolName
+                number={id.slice(6)}
+                formStatus={formStatus}
+                schoolNameField={getField("Name")}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            </p>
+            <p>
+              <SchoolLocation
+                number={id.slice(6)}
+                formStatus={formStatus}
+                schoolLocationField={getField("Location")}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            </p>
+            <div className="year-line">
+              <span>Years Attended:</span>
+              <div>
+                <div className="month-and-year">
+                  <Month
+                    type={id + "Start"}
+                    value={schoolStartMonth.value}
+                    handleChange={handleChange}
+                  />
+                  <Year
+                    type={id + "Start"}
+                    formStatus={formStatus}
+                    value={schoolStartYear.value}
+                    status={schoolStartYear.status}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                </div>
+                <span>to</span>
+                <div className="month-and-year">
+                  <Month
+                    type={id + "End"}
+                    value={schoolEndMonth.value}
+                    handleChange={handleChange}
+                  />
+                  <Year
+                    type={id + "End"}
+                    formStatus={formStatus}
+                    value={schoolEndYear.value}
+                    status={schoolEndYear.status}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                </div>
+              </div>
+            </div>
+            <p>
+              <Degree
+                number={id.slice(6)}
+                formStatus={formStatus}
+                schoolDegreeField={schoolDegreeField}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            </p>
+            {schoolDegreeField.value !== "" &&
+              schoolDegreeField.value !== "diploma" && (
+                <p>
+                  <FieldOfStudy
+                    number={id.slice(6)}
+                    formStatus={formStatus}
+                    schoolFieldOfStudyField={getField("FieldOfStudy")}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                </p>
+              )}
           </div>
-          <span>to</span>
-          <div className="month-and-year">
-            <Month
-              type="school1End"
-              value={formFields.School1EndMonth.value}
-              handleChange={handleChange}
-            />
-            <Year
-              type="school1End"
-              formStatus={formStatus}
-              value={formFields.School1EndYear.value}
-              status={formFields.School1EndYear.status}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-            />
-          </div>
-        </div>
-      </div>
-      <p>
-        <Degree
-          number="1"
-          formStatus={formStatus}
-          schoolDegreeField={formFields.School1Degree}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
-      {formFields.School1Degree.value !== "" &&
-        formFields.School1Degree.value !== "diploma" && (
-          <p>
-            <FieldOfStudy
-              number="1"
-              formStatus={formStatus}
-              schoolFieldOfStudyField={formFields.School1FieldOfStudy}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-            />
-          </p>
-        )}
+        );
+      })}
       <button type="button" onClick={handleAddSchoolOrWork}>
         + Add School
       </button>

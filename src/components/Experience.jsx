@@ -12,81 +12,102 @@ export default function Experience({
   handleBlur,
   handleAddSchoolOrWork,
 }) {
+  const companyIdsArray = formFields.Experience.childIds;
+
   return (
     <fieldset>
       <legend>Work Experience</legend>
-      <p>
-        <CompanyName
-          number="1"
-          formStatus={formStatus}
-          companyNameField={formFields.Company1Name}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
-      <p>
-        <CompanyLocation
-          number="1"
-          formStatus={formStatus}
-          companyLocationField={formFields.Company1Location}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
-      <div className="year-line">
-        <span>Years Worked:</span>
-        <div>
-          <div className="month-and-year">
-            <Month
-              type="company1Start"
-              value={formFields.Company1StartMonth.value}
-              handleChange={handleChange}
-            />
-            <Year
-              type="company1Start"
-              formStatus={formStatus}
-              value={formFields.Company1StartYear.value}
-              status={formFields.Company1StartYear.status}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-            />
+      {companyIdsArray.map((id) => {
+        const formFieldArray = Object.entries(formFields);
+        function getField(string) {
+          const targetedFieldArray = formFieldArray.filter(
+            (field) => field[1].id === id + string
+          );
+          const targetedFieldName = targetedFieldArray[0][0];
+          return formFields[targetedFieldName];
+        }
+        const companyStartMonth = getField("StartMonth");
+        const companyStartYear = getField("StartYear");
+        const companyEndMonth = getField("EndMonth");
+        const companyEndYear = getField("EndYear");
+
+        return (
+          <div className="school-company-block" key={id}>
+            <p>
+              <CompanyName
+                number={id.slice(7)}
+                formStatus={formStatus}
+                companyNameField={getField("Name")}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            </p>
+            <p>
+              <CompanyLocation
+                number={id.slice(7)}
+                formStatus={formStatus}
+                companyLocationField={getField("Location")}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            </p>
+            <div className="year-line">
+              <span>Years Attended:</span>
+              <div>
+                <div className="month-and-year">
+                  <Month
+                    type={id + "Start"}
+                    value={companyStartMonth.value}
+                    handleChange={handleChange}
+                  />
+                  <Year
+                    type={id + "Start"}
+                    formStatus={formStatus}
+                    value={companyStartYear.value}
+                    status={companyStartYear.status}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                </div>
+                <span>to</span>
+                <div className="month-and-year">
+                  <Month
+                    type={id + "End"}
+                    value={companyEndMonth.value}
+                    handleChange={handleChange}
+                  />
+                  <Year
+                    type={id + "End"}
+                    formStatus={formStatus}
+                    value={companyEndYear.value}
+                    status={companyEndYear.status}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                </div>
+              </div>
+            </div>
+            <p>
+              <Position
+                number={id.slice(7)}
+                formStatus={formStatus}
+                companyPositionField={getField("Position")}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            </p>
+            <p className="responsibilities-line">
+              <Responsibilities
+                number={id.slice(7)}
+                formStatus={formStatus}
+                companyResponsibilitiesField={getField("Responsibilities")}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            </p>
           </div>
-          <span>to</span>
-          <div className="month-and-year">
-            <Month
-              type="company1End"
-              value={formFields.Company1EndMonth.value}
-              handleChange={handleChange}
-            />
-            <Year
-              type="company1End"
-              formStatus={formStatus}
-              value={formFields.Company1EndYear.value}
-              status={formFields.Company1EndYear.status}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-            />
-          </div>
-        </div>
-      </div>
-      <p>
-        <Position
-          number="1"
-          formStatus={formStatus}
-          companyPositionField={formFields.Company1Position}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
-      <p className="responsibilities-line">
-        <Responsibilities
-          number="1"
-          formStatus={formStatus}
-          companyResponsibilitiesField={formFields.Company1Responsibilities}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-      </p>
+        );
+      })}
       <button type="button" onClick={handleAddSchoolOrWork}>
         + Add Company
       </button>

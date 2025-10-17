@@ -53,10 +53,16 @@ fieldset > legend {
   font-weight: bold;
 }
 
+.school-company-block {
+  margin-bottom: 45px;
+}
+
+.school-company-block > p:not(:last-child),
 fieldset > p:not(:last-child) {
   margin-bottom: 25px;
 }
 
+.school-company-block > p,
 fieldset > p {
   display: flex;
   align-items: center;
@@ -65,14 +71,30 @@ fieldset > p {
   width: max-content;
 }
 
-.responsibilities-line {
+/* below should be unnecessary */
+/* fieldset > p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  width: max-content;
+} */
+
+.school-company-block > p[class="responsibilities-line"] {
   align-items: flex-start;
 }
 
+.school-company-block > p > label,
 fieldset > p > label {
   width: 150px;
   flex-shrink: 0;
 }
+
+/* below should be unnecessary */
+/* fieldset > p > label {
+  width: 150px;
+  flex-shrink: 0;
+} */
 
 .invalid {
   background-color: rgb(255, 217, 217);
@@ -165,6 +187,7 @@ form > button:active {
     padding-bottom: 30px;
   }
 
+  .school-company-block > p:not(:last-child),
   fieldset > p:not(:last-child) {
     margin-bottom: 35px;
   }
