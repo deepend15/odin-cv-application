@@ -9,6 +9,7 @@ export default function Form({
   handleChange,
   handleBlur,
   handleSubmit,
+  handleAddSchoolOrWork,
 }) {
   return (
     <>
@@ -28,12 +29,14 @@ export default function Form({
           formFields={formFields}
           handleChange={handleChange}
           handleBlur={handleBlur}
+          handleAddSchoolOrWork={handleAddSchoolOrWork}
         />
         <Experience
           formStatus={formStatus}
           formFields={formFields}
           handleChange={handleChange}
           handleBlur={handleBlur}
+          handleAddSchoolOrWork={handleAddSchoolOrWork}
         />
         <button onClick={handleSubmit}>Submit</button>
       </form>

@@ -10,6 +10,7 @@ export default function Education({
   formFields,
   handleChange,
   handleBlur,
+  handleAddSchoolOrWork,
 }) {
   return (
     <fieldset>
@@ -89,6 +90,9 @@ export default function Education({
             />
           </p>
         )}
+      <button type="button" onClick={handleAddSchoolOrWork}>
+        + Add School
+      </button>
     </fieldset>
   );
 }

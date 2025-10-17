@@ -10,6 +10,7 @@ export default function Experience({
   formFields,
   handleChange,
   handleBlur,
+  handleAddSchoolOrWork,
 }) {
   return (
     <fieldset>
@@ -86,6 +87,9 @@ export default function Experience({
           handleBlur={handleBlur}
         />
       </p>
+      <button type="button" onClick={handleAddSchoolOrWork}>
+        + Add Company
+      </button>
     </fieldset>
   );
 }

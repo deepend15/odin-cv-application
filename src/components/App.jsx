@@ -154,7 +154,7 @@ function App() {
           if (entry[1].isPresent) {
             if (!entry[1].hasChanged) return entry[1];
             return entry[1].status === "invalid";
-          } 
+          }
         }
       }
     });
@@ -177,6 +177,90 @@ function App() {
     window.scrollTo(0, 0);
   }
 
+  function handleAddSchoolOrWork(e) {
+    function capitalizeString(string) {
+      return string.at(0).toUpperCase() + string.slice(1);
+    }
+
+    let idsArray;
+    e.target.textContent.endsWith("School")
+      ? (idsArray = formFields.Education.childIds)
+      : (idsArray = formFields.Experience.childIds);
+    const currentNumber = idsArray.length;
+    const newNumber = (currentNumber + 1).toString();
+    let prefix;
+    e.target.textContent.endsWith("School")
+      ? (prefix = "school")
+      : (prefix = "company");
+    const newId = prefix + newNumber;
+    const newIdsArray = idsArray.slice();
+    newIdsArray.push(newId);
+    const newSectionField = {
+      childIds: newIdsArray,
+    };
+
+    const schoolFieldsArray = [
+      "Name",
+      "Location",
+      "StartMonth",
+      "StartYear",
+      "EndMonth",
+      "EndYear",
+    ];
+    const workFieldsArray = schoolFieldsArray.slice();
+    schoolFieldsArray.push("Degree", "FieldOfStudy");
+    workFieldsArray.push("Position", "Responsibilities");
+    const newParentPropertyName = capitalizeString(newId);
+    const newParentPropertyContents = {
+      id: newId,
+      childIds: [],
+    };
+    let targetedArray;
+    e.target.textContent.endsWith("School")
+      ? (targetedArray = schoolFieldsArray)
+      : (targetedArray = workFieldsArray);
+    targetedArray.forEach((field) => {
+      newParentPropertyContents.childIds.push(prefix + newNumber + field);
+    });
+
+    const newFieldPropertyNamesAndContents = [];
+    targetedArray.forEach((field) => {
+      const newFieldPropertyName = capitalizeString(newId) + field;
+      const newFieldPropertyContents = {
+        id: newId + field,
+        value: "",
+      };
+      if (field.endsWith("Month")) {
+        newFieldPropertyContents.value = "January";
+        newFieldPropertyContents.status = "valid";
+      } else {
+        newFieldPropertyContents.status = "initial";
+        newFieldPropertyContents.hasChanged = false;
+      }
+      if (field === "FieldOfStudy") newFieldPropertyContents.isPresent = false;
+
+      newFieldPropertyNamesAndContents.push([
+        newFieldPropertyName,
+        newFieldPropertyContents,
+      ]);
+    });
+
+    let targetedPropertyString;
+    e.target.textContent.endsWith("School")
+      ? (targetedPropertyString = "Education")
+      : (targetedPropertyString = "Experience");
+    const newFormFields = {
+      ...formFields,
+      [targetedPropertyString]: newSectionField,
+      [newParentPropertyName]: newParentPropertyContents,
+    };
+    newFieldPropertyNamesAndContents.forEach((propertyNameAndContentsArray) => {
+      newFormFields[propertyNameAndContentsArray[0]] =
+        propertyNameAndContentsArray[1];
+    });
+    setFormFields(newFormFields);
+  }
+
   let h1Text;
   formStatus === "submitted"
     ? (h1Text = formFields.Name.value + " Resume")
@@ -192,6 +276,7 @@ function App() {
           handleChange={handleChange}
           handleBlur={handleBlur}
           handleSubmit={handleSubmit}
+          handleAddSchoolOrWork={handleAddSchoolOrWork}
         />
       )}
       {formStatus === "submitted" && (
