@@ -11,6 +11,7 @@ export default function Education({
   handleChange,
   handleBlur,
   handleAddSchoolOrWork,
+  handleDeleteSchoolOrWork,
 }) {
   const schoolIdsArray = formFields.Education.childIds;
 
@@ -33,7 +34,7 @@ export default function Education({
         const schoolDegreeField = getField("Degree");
 
         return (
-          <div className="school-company-block" key={id}>
+          <div className="school-company-block" data-custom-id={id} key={id}>
             <p>
               <SchoolName
                 number={id.slice(6)}
@@ -109,6 +110,15 @@ export default function Education({
                   />
                 </p>
               )}
+            {schoolIdsArray.length > 1 && (
+              <button
+                type="button"
+                className="delete-button"
+                onClick={handleDeleteSchoolOrWork}
+              >
+                - Delete School
+              </button>
+            )}
           </div>
         );
       })}

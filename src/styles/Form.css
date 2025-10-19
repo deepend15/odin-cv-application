@@ -55,6 +55,7 @@ fieldset > legend {
 
 .school-company-block {
   margin-bottom: 45px;
+  display: grid;
 }
 
 .school-company-block > p:not(:last-child),
@@ -79,6 +80,25 @@ fieldset > p {
 fieldset > p > label {
   width: 150px;
   flex-shrink: 0;
+}
+
+.delete-button {
+  margin-bottom: 8px;
+  justify-self: center;
+  background-color: darkred;
+  color: white;
+  padding: 5px 12px;
+  border: 2px outset silver;
+  border-radius: 12px;
+}
+
+.delete-button:hover {
+  background-color: rgb(114, 0, 0);
+}
+
+.delete-button:active {
+  background-color: rgb(91, 0, 0);
+  border-style: inset;
 }
 
 .invalid {

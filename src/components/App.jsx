@@ -261,6 +261,113 @@ function App() {
     setFormFields(newFormFields);
   }
 
+  function handleDeleteSchoolOrWork(e) {
+    function capitalizeString(string) {
+      return string.at(0).toUpperCase() + string.slice(1);
+    }
+
+    const newFormFields = { ...formFields };
+
+    let idsArray;
+    e.target.textContent.endsWith("School")
+      ? (idsArray = formFields.Education.childIds)
+      : (idsArray = formFields.Experience.childIds);
+    const targetedIdArray = idsArray.filter(
+      (id) => id === e.target.parentElement.dataset.customId
+    );
+    const targetedId = targetedIdArray[0];
+    const targetedParentArray = formFieldArray.filter(
+      (field) => field[1].id === targetedId
+    );
+    const targetedParentPropertyName = targetedParentArray[0][0];
+    const targetParentChildIds = targetedParentArray[0][1].childIds;
+    targetParentChildIds.forEach((id) => {
+      const associatedProperty = formFieldArray.filter(
+        (field) => field[1].id === id
+      );
+      const associatedPropertyName = associatedProperty[0][0];
+      delete newFormFields[associatedPropertyName];
+    });
+    delete newFormFields[targetedParentPropertyName];
+
+    const targetedIdIndex = idsArray.indexOf(targetedId);
+    const newIdsArray = [];
+    if (targetedIdIndex > 0) {
+      const previousIds = idsArray.slice(0, targetedIdIndex);
+      previousIds.forEach((id) => newIdsArray.push(id));
+    }
+    if (targetedIdIndex !== idsArray.length - 1) {
+      const afterIds = idsArray.slice(targetedIdIndex + 1);
+      afterIds.forEach((id) => {
+        let newIdNumber;
+        id.startsWith("school")
+          ? (newIdNumber = Number(id.slice(6)) - 1)
+          : (newIdNumber = Number(id.slice(7)) - 1);
+        let newId;
+        id.startsWith("school")
+          ? (newId = "school" + newIdNumber.toString())
+          : (newId = "company" + newIdNumber.toString());
+        newIdsArray.push(newId);
+
+        const previousParent = formFieldArray.filter(
+          (field) => field[1].id === id
+        );
+        const previousParentData = previousParent[0][1];
+        const newParentChildIds = [];
+        previousParentData.childIds.forEach((id) => {
+          const associatedPropertyArray = formFieldArray.filter(
+            (field) => field[1].id === id
+          );
+          const previousData = associatedPropertyArray[0][1];
+          let suffix;
+          id.endsWith("Name")
+            ? (suffix = "Name")
+            : id.endsWith("Location")
+            ? (suffix = "Location")
+            : id.endsWith("StartMonth")
+            ? (suffix = "StartMonth")
+            : id.endsWith("StartYear")
+            ? (suffix = "StartYear")
+            : id.endsWith("EndMonth")
+            ? (suffix = "EndMonth")
+            : id.endsWith("EndYear")
+            ? (suffix = "EndYear")
+            : id.endsWith("Degree")
+            ? (suffix = "Degree")
+            : id.endsWith("FieldOfStudy")
+            ? (suffix = "FieldOfStudy")
+            : id.endsWith("Position")
+            ? (suffix = "Position")
+            : (suffix = "Responsibilities");
+          let newFieldId;
+          id.startsWith("school")
+            ? (newFieldId = "school" + newIdNumber.toString() + suffix)
+            : (newFieldId = "company" + newIdNumber.toString() + suffix);
+          newParentChildIds.push(newFieldId);
+          newFormFields[capitalizeString(newFieldId)] = {
+            ...previousData,
+            id: newFieldId,
+          };
+          delete newFormFields[capitalizeString(id)];
+        });
+        const newParentData = {
+          id: newId,
+          childIds: newParentChildIds,
+        };
+        newFormFields[capitalizeString(newId)] = {
+          ...newParentData,
+        };
+        delete newFormFields[capitalizeString(id)];
+      });
+    }
+    let targetedPropertyString;
+    e.target.textContent.endsWith("School")
+      ? (targetedPropertyString = "Education")
+      : (targetedPropertyString = "Experience");
+    newFormFields[targetedPropertyString].childIds = newIdsArray;
+    setFormFields(newFormFields);
+  }
+
   let h1Text;
   formStatus === "submitted"
     ? (h1Text = formFields.Name.value + " Resume")
@@ -277,6 +384,7 @@ function App() {
           handleBlur={handleBlur}
           handleSubmit={handleSubmit}
           handleAddSchoolOrWork={handleAddSchoolOrWork}
+          handleDeleteSchoolOrWork={handleDeleteSchoolOrWork}
         />
       )}
       {formStatus === "submitted" && (

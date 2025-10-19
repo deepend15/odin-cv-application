@@ -11,6 +11,7 @@ export default function Experience({
   handleChange,
   handleBlur,
   handleAddSchoolOrWork,
+  handleDeleteSchoolOrWork,
 }) {
   const companyIdsArray = formFields.Experience.childIds;
 
@@ -32,7 +33,7 @@ export default function Experience({
         const companyEndYear = getField("EndYear");
 
         return (
-          <div className="school-company-block" key={id}>
+          <div className="school-company-block" data-custom-id={id} key={id}>
             <p>
               <CompanyName
                 number={id.slice(7)}
@@ -105,6 +106,15 @@ export default function Experience({
                 handleBlur={handleBlur}
               />
             </p>
+            {companyIdsArray.length > 1 && (
+              <button
+                type="button"
+                className="delete-button"
+                onClick={handleDeleteSchoolOrWork}
+              >
+                - Delete Company
+              </button>
+            )}
           </div>
         );
       })}
